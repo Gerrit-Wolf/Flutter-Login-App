@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
+  const InputField(this.title, this.update);
+
   final String title;
   final Function update;
-
-  InputField(this.title, this.update);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class InputField extends StatelessWidget {
             Icons.textsms,
             size: 15.0
         ),
-        labelText: this.title,
+        labelText: title,
         labelStyle: TextStyle(
           fontFamily: 'Roboto',
-          color: Color(0xff636e72),
+          color: const Color(0xff636e72),
         ),
       ),
       onChanged: (String changedData) {
-        this.update(this.title, changedData);
+        this.update(title, changedData);
       },
     );
   }

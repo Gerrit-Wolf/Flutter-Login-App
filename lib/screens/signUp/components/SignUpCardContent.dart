@@ -14,27 +14,27 @@ class SignUpCardContentState extends State<SignUpCardContent> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         Container(
-          padding: EdgeInsets.all(5.0),
-          child: InputField('Email Adress', this.update),
+          padding: const EdgeInsets.all(5.0),
+          child: InputField('Email Adress', update),
         ),
         Container(
-          padding: EdgeInsets.all(5.0),
-          child: InputField('Username', this.update),
+          padding: const EdgeInsets.all(5.0),
+          child: InputField('Username', update),
         ),
         Container(
-          padding: EdgeInsets.all(5.0),
-          child: InputField('Password', this.update),
+          padding: const EdgeInsets.all(5.0),
+          child: InputField('Password', update),
         ),
         Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               top: 10.0,
             ),
             width: double.infinity,
             child: RaisedButton(
-              child: Text('Sign Up!'),
-              color: Color(0xffb2bec3),
+              child: const Text('Sign Up!'),
+              color: const Color(0xffb2bec3),
               onPressed: (){},
             )
         ),

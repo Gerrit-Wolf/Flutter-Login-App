@@ -5,15 +5,15 @@ class SignUpCardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
-          children: [
+          children: <Widget>[
             Center(
-                child: Text('Do you want to sign up to the Community?')
+                child: const Text('Do you want to sign up to the Community?')
             ),
             RaisedButton(
-              child: Text('Sign Up!'),
-              color: Color(0xffb2bec3),
+              child: const Text('Sign Up!'),
+              color: const Color(0xffb2bec3),
               onPressed: (){
                 Navigator.pushNamed(context, '/signUp');
               },

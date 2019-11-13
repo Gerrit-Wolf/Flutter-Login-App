@@ -4,7 +4,7 @@ class ForgotPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      child: Text('Forgot Password?'),
+      child: const Text('Forgot Password?'),
       onPressed: (){},
     );
   }
