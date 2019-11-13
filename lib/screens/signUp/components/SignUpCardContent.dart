@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/services/AuthService.dart';
 import '../../../components/InputField.dart';
 
 class SignUpCardContent extends StatefulWidget {
@@ -7,7 +8,6 @@ class SignUpCardContent extends StatefulWidget {
 }
 
 class SignUpCardContentState extends State<SignUpCardContent> {
-  String username;
   String email;
   String password;
 
@@ -21,10 +21,6 @@ class SignUpCardContentState extends State<SignUpCardContent> {
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Username', update),
-        ),
-        Container(
-          padding: const EdgeInsets.all(5.0),
           child: InputField('Password', update),
         ),
         Container(
@@ -35,7 +31,13 @@ class SignUpCardContentState extends State<SignUpCardContent> {
             child: RaisedButton(
               child: const Text('Sign Up!'),
               color: const Color(0xffb2bec3),
-              onPressed: (){},
+              onPressed: () async {
+                final bool signUpSuccess = await AuthService.signUp(email, password);
+
+                if (signUpSuccess == true) {
+                  Navigator.pushNamed(context, '/home');
+                }
+              },
             )
         ),
       ],
@@ -44,16 +46,11 @@ class SignUpCardContentState extends State<SignUpCardContent> {
 
   void update(String context, String data) {
     setState(() {
-      if (context == 'Username') {
-        username = data;
+      if (context == 'Password') {
+        password = data;
         return;
       }
-
-      if (context == 'Email Adress') {
-        email = data;
-        return;
-      }
-      password = data;
+      email = data;
     });
   }
 }

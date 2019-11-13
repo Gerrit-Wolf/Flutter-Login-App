@@ -9,7 +9,7 @@ class LoginCardContent extends StatefulWidget {
 }
 
 class LoginCardContentState extends State<LoginCardContent> {
-  String username;
+  String email;
   String password;
 
   @override
@@ -18,7 +18,7 @@ class LoginCardContentState extends State<LoginCardContent> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Username', update),
+          child: InputField('E-Mail Adress', update),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
@@ -29,7 +29,7 @@ class LoginCardContentState extends State<LoginCardContent> {
               top: 10.0,
             ),
             width: double.infinity,
-            child: LoginButton(username, password)
+            child: LoginButton(email, password)
         ),
         Container(
           alignment: Alignment.centerRight,
@@ -41,11 +41,11 @@ class LoginCardContentState extends State<LoginCardContent> {
 
   void update(String context, String data) {
     setState(() {
-      if (context == 'Username') {
-        username = data;
+      if (context == 'Password') {
+        password = data;
         return;
       }
-      password = data;
+      email = data;
     });
   }
 }
