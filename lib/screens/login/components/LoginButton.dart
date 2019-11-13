@@ -9,10 +9,8 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       child: Text('Login'),
-      onPressed: (){
-        print('username: $username');
-        print('password: $password');
-      },
+      color: Color(0xffb2bec3),
+      onPressed: (){},
     );
   }
 }

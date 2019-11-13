@@ -17,7 +17,7 @@ class InputField extends StatelessWidget {
         labelText: this.title,
         labelStyle: TextStyle(
           fontFamily: 'Roboto',
-          color: Colors.lightBlueAccent,
+          color: Color(0xff636e72),
         ),
       ),
       onChanged: (String changedData) {
