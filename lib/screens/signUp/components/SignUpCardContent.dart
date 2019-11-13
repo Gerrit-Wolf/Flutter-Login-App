@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
-import 'ForgotPasswordButton.dart';
-import 'LoginButton.dart';
 import '../../../components/InputField.dart';
 
-class LoginCardContent extends StatefulWidget {
+class SignUpCardContent extends StatefulWidget {
   @override
-  LoginCardContentState createState() => LoginCardContentState();
+  SignUpCardContentState createState() => SignUpCardContentState();
 }
 
-class LoginCardContentState extends State<LoginCardContent> {
+class SignUpCardContentState extends State<SignUpCardContent> {
   String username;
+  String email;
   String password;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          padding: EdgeInsets.all(5.0),
+          child: InputField('Email Adress', this.update),
+        ),
         Container(
           padding: EdgeInsets.all(5.0),
           child: InputField('Username', this.update),
@@ -29,11 +32,11 @@ class LoginCardContentState extends State<LoginCardContent> {
               top: 10.0,
             ),
             width: double.infinity,
-            child: LoginButton(this.username, this.password)
-        ),
-        Container(
-          alignment: Alignment.centerRight,
-          child: ForgotPasswordButton(),
+            child: RaisedButton(
+              child: Text('Sign Up!'),
+              color: Color(0xffb2bec3),
+              onPressed: (){},
+            )
         ),
       ],
     );
@@ -43,6 +46,11 @@ class LoginCardContentState extends State<LoginCardContent> {
     setState(() {
       if (context == 'Username') {
         username = data;
+        return;
+      }
+
+      if (context == 'Email Adress') {
+        email = data;
         return;
       }
       password = data;

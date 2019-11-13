@@ -14,7 +14,9 @@ class SignUpCardContent extends StatelessWidget {
             RaisedButton(
               child: Text('Sign Up!'),
               color: Color(0xffb2bec3),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pushNamed(context, '/signUp');
+              },
             )
           ],
         )
