@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/components/const/InputFieldTypes.dart';
 
 class InputField extends StatelessWidget {
   const InputField(this.title, this.type, this.update);
@@ -21,7 +22,7 @@ class InputField extends StatelessWidget {
           color: Color(0xff636e72),
         ),
       ),
-      obscureText: type == 'password',
+      obscureText: type == InputFieldTypes.PASSWORD,
       onChanged: (String changedData) {
         this.update(type, changedData);
       },
