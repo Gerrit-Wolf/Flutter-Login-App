@@ -10,6 +10,8 @@ class SignUpCardContent extends StatefulWidget {
 class SignUpCardContentState extends State<SignUpCardContent> {
   String email;
   String password;
+  String errorMessage;
+  bool hasError;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class SignUpCardContentState extends State<SignUpCardContent> {
               child: const Text('Sign Up!'),
               color: const Color(0xffb2bec3),
               onPressed: () async {
-                final bool signUpSuccess = await AuthService.signUp(email, password);
+                final bool signUpSuccess = await AuthService.signUp(email, password, checkForSignUpError);
 
                 if (signUpSuccess == true) {
                   Navigator.pushNamed(context, '/home');
@@ -40,6 +42,24 @@ class SignUpCardContentState extends State<SignUpCardContent> {
               },
             )
         ),
+        Visibility(
+          child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0)
+              ),
+              color: Colors.redAccent,
+              child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    errorMessage ?? '',
+                    style: TextStyle(
+                        color: Colors.black
+                    ),
+                  )
+              )
+          ),
+          visible: hasError ?? false,
+        )
       ],
     );
   }
@@ -51,6 +71,13 @@ class SignUpCardContentState extends State<SignUpCardContent> {
         return;
       }
       email = data;
+    });
+  }
+
+  void checkForSignUpError(String message) {
+    setState(() {
+      errorMessage = message;
+      hasError = true;
     });
   }
 }

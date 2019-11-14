@@ -11,6 +11,8 @@ class LoginCardContent extends StatefulWidget {
 class LoginCardContentState extends State<LoginCardContent> {
   String email;
   String password;
+  String errorMessage;
+  bool hasError;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +31,30 @@ class LoginCardContentState extends State<LoginCardContent> {
               top: 10.0,
             ),
             width: double.infinity,
-            child: LoginButton(email, password)
+            child: LoginButton(email, password, checkForLoginError)
         ),
         Container(
           alignment: Alignment.centerRight,
           child: ForgotPasswordButton(),
         ),
+        Visibility(
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0)
+            ),
+            color: Colors.redAccent,
+            child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              errorMessage ?? '',
+              style: TextStyle(
+                color: Colors.black
+              ),
+            )
+          )
+          ),
+          visible: hasError ?? false,
+        )
       ],
     );
   }
@@ -46,6 +66,13 @@ class LoginCardContentState extends State<LoginCardContent> {
         return;
       }
       email = data;
+    });
+  }
+
+  void checkForLoginError(String message) {
+    setState(() {
+      errorMessage = message;
+      hasError = true;
     });
   }
 }

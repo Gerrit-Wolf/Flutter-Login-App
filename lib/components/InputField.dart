@@ -15,9 +15,9 @@ class InputField extends StatelessWidget {
             size: 15.0
         ),
         labelText: title,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           fontFamily: 'Roboto',
-          color: const Color(0xff636e72),
+          color: Color(0xff636e72),
         ),
       ),
       onChanged: (String changedData) {
