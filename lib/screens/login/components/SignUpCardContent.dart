@@ -14,6 +14,9 @@ class SignUpCardContent extends StatelessWidget {
             RaisedButton(
               child: const Text('Sign Up!'),
               color: const Color(0xffb2bec3),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               onPressed: (){
                 Navigator.pushNamed(context, '/signUp');
               },

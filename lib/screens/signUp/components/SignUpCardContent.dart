@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/components/const/InputFieldTypes.dart';
 import 'package:test_app/services/AuthService.dart';
 import '../../../components/InputField.dart';
 
@@ -19,11 +20,11 @@ class SignUpCardContentState extends State<SignUpCardContent> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Email Adress', update),
+          child: InputField('Email Adress', InputFieldTypes.EMAIL, update),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Password', update),
+          child: InputField('Password', InputFieldTypes.PASSWORD, update),
         ),
         Container(
             padding: const EdgeInsets.only(
@@ -33,6 +34,9 @@ class SignUpCardContentState extends State<SignUpCardContent> {
             child: RaisedButton(
               child: const Text('Sign Up!'),
               color: const Color(0xffb2bec3),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               onPressed: () async {
                 final bool signUpSuccess = await AuthService.signUp(email, password, checkForSignUpError);
 
@@ -66,10 +70,13 @@ class SignUpCardContentState extends State<SignUpCardContent> {
 
   void update(String context, String data) {
     setState(() {
-      if (context == 'Password') {
+      hasError = false;
+
+      if (context == InputFieldTypes.PASSWORD) {
         password = data;
         return;
       }
+
       email = data;
     });
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../components/InputField.dart';
+import '../../../components/const/InputFieldTypes.dart';
 import 'ForgotPasswordButton.dart';
 import 'LoginButton.dart';
 
@@ -20,11 +21,11 @@ class LoginCardContentState extends State<LoginCardContent> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('E-Mail Adress', update),
+          child: InputField('E-Mail Adress', InputFieldTypes.EMAIL, update),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Password', update),
+          child: InputField('Password', InputFieldTypes.PASSWORD, update),
         ),
         Container(
             padding: const EdgeInsets.only(
@@ -61,10 +62,13 @@ class LoginCardContentState extends State<LoginCardContent> {
 
   void update(String context, String data) {
     setState(() {
-      if (context == 'Password') {
+      hasError = false;
+
+      if (context == InputFieldTypes.PASSWORD) {
         password = data;
         return;
       }
+
       email = data;
     });
   }

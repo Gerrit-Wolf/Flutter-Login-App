@@ -13,6 +13,9 @@ class LoginButton extends StatelessWidget {
     return RaisedButton(
       child: const Text('Login'),
       color: const Color(0xffb2bec3),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
       onPressed: () async {
         final bool loginSuccess = await AuthService.signIn(email, password, checkForLoginErrors);
 

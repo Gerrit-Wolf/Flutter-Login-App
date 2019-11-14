@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
-  const InputField(this.title, this.update);
+  const InputField(this.title, this.type, this.update);
 
   final String title;
+  final String type;
   final Function update;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextField(
       decoration: InputDecoration(
         suffixIcon: Icon(
             Icons.textsms,
@@ -20,8 +21,9 @@ class InputField extends StatelessWidget {
           color: Color(0xff636e72),
         ),
       ),
+      obscureText: type == 'password',
       onChanged: (String changedData) {
-        this.update(title, changedData);
+        this.update(type, changedData);
       },
     );
   }
