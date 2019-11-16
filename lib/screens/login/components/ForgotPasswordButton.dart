@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/shared/const/routes.dart';
 
 class ForgotPasswordButton extends StatelessWidget {
   @override
@@ -6,7 +7,7 @@ class ForgotPasswordButton extends StatelessWidget {
     return FlatButton(
       child: const Text('Forgot Password?'),
       onPressed: (){
-        Navigator.pushNamed(context, '/resetPassword');
+        Navigator.pushNamed(context, Routes.RESET_PASSWORD);
       },
     );
   }

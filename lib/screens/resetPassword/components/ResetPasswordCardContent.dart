@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/components/const/InputFieldTypes.dart';
+import 'package:test_app/components/inputField/InputField.dart';
+import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/services/AuthService.dart';
-import '../../../components/InputField.dart';
+import 'package:test_app/shared/const/routes.dart';
 
 class ResetPasswordCardContent extends StatefulWidget {
   @override
@@ -34,7 +35,7 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
               ),
               onPressed: () async {
                 await AuthService.resetPassword(email, checkForResetPasswordErrors);
-                Navigator.pushNamed(context, '/');
+                Navigator.pushNamed(context, Routes.LOGIN);
               },
             )
         ),

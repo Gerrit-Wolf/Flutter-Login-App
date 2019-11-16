@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../components/InputField.dart';
-import '../../../components/const/InputFieldTypes.dart';
+import '../../../components/inputField/InputField.dart';
+import '../../../components/inputField/const/InputFieldTypes.dart';
 import 'ForgotPasswordButton.dart';
 import 'LoginButton.dart';
 

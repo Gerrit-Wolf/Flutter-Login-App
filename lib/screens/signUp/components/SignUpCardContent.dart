@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/components/const/InputFieldTypes.dart';
+import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/services/AuthService.dart';
-import '../../../components/InputField.dart';
+import 'package:test_app/shared/const/routes.dart';
+import '../../../components/inputField/InputField.dart';
 
 class SignUpCardContent extends StatefulWidget {
   @override
@@ -41,7 +42,7 @@ class SignUpCardContentState extends State<SignUpCardContent> {
                 final bool signUpSuccess = await AuthService.signUp(email, password, checkForSignUpError);
 
                 if (signUpSuccess == true) {
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.pushNamed(context, Routes.HOME);
                 }
               },
             )

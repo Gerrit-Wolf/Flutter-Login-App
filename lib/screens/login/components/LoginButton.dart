@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/services/AuthService.dart';
+import 'package:test_app/shared/const/routes.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton(this.email, this.password, this.checkForLoginErrors);
@@ -20,7 +21,7 @@ class LoginButton extends StatelessWidget {
         final bool loginSuccess = await AuthService.signIn(email, password, checkForLoginErrors);
 
         if (loginSuccess == true) {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, Routes.HOME);
         }
       },
     );

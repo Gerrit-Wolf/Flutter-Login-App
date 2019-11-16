@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/shared/const/routes.dart';
 
 class SignUpCardContent extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class SignUpCardContent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: (){
-                Navigator.pushNamed(context, '/signUp');
+                Navigator.pushNamed(context, Routes.SIGN_UP);
               },
             )
           ],
