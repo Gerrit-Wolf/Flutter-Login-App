@@ -28,4 +28,16 @@ class AuthService {
     }
     return false;
   }
+
+  static Future<void> resetPassword(String email, Function checkForResetPasswordErrors) async {
+    try {
+      if (email == null || email.isEmpty == true) {
+        checkForResetPasswordErrors('Die Eingabe darf nicht leer sein!');
+        return;
+      }
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } catch (exception) {
+      checkForResetPasswordErrors(exception.message);
+    }
+  }
 }

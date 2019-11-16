@@ -5,7 +5,9 @@ class ForgotPasswordButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
       child: const Text('Forgot Password?'),
-      onPressed: (){},
+      onPressed: (){
+        Navigator.pushNamed(context, '/resetPassword');
+      },
     );
   }
 }
