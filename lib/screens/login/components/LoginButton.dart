@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
 
@@ -12,7 +13,9 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      child: const Text('Login'),
+      child: Text(
+          AppLocalizations.of(context).translate('LOGIN')
+      ),
       color: const Color(0xffb2bec3),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),

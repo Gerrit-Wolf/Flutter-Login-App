@@ -1,0 +1,10 @@
+{
+  "LOGIN": "Login",
+  "FORGOT_PASSWORD": "Forgot Password?",
+  "EMAIL": "E-Mail adress",
+  "PASSWORD": "Password",
+  "SIGN_UP": "Sign Up",
+  "SIGN_UP_INFO": "Do you want to sign up to the Community?",
+  "RESET_PASSWORD": "Reset Password",
+  "AUTH_ERROR": "Authentification failed."
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
+import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
 import '../../../components/inputField/InputField.dart';
@@ -21,11 +22,19 @@ class SignUpCardContentState extends State<SignUpCardContent> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Email Adress', InputFieldTypes.EMAIL, update),
+          child: InputField(
+              AppLocalizations.of(context).translate('EMAIL'),
+              InputFieldTypes.EMAIL,
+              update
+          ),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Password', InputFieldTypes.PASSWORD, update),
+          child: InputField(
+              AppLocalizations.of(context).translate('PASSWORD'),
+              InputFieldTypes.PASSWORD,
+              update
+          ),
         ),
         Container(
             padding: const EdgeInsets.only(
@@ -33,13 +42,15 @@ class SignUpCardContentState extends State<SignUpCardContent> {
             ),
             width: double.infinity,
             child: RaisedButton(
-              child: const Text('Sign Up!'),
+              child: Text(
+                AppLocalizations.of(context).translate('SIGN_UP'),
+              ),
               color: const Color(0xffb2bec3),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                final bool signUpSuccess = await AuthService.signUp(email, password, checkForSignUpError);
+                final bool signUpSuccess = await AuthService.signUp(email, password, handleError);
 
                 if (signUpSuccess == true) {
                   Navigator.pushNamed(context, Routes.HOME);
@@ -82,9 +93,9 @@ class SignUpCardContentState extends State<SignUpCardContent> {
     });
   }
 
-  void checkForSignUpError(String message) {
+  void handleError() {
     setState(() {
-      errorMessage = message;
+      errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
       hasError = true;
     });
   }

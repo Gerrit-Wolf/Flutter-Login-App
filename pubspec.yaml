@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   firebase_core: 0.2.5+1
   firebase_auth: 0.7.0
 
@@ -43,6 +45,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
+    - assets/lang/en.json
+    - assets/lang/de.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,0 +1,10 @@
+{
+  "LOGIN": "Anmelden",
+  "FORGOT_PASSWORD": "Passwort vergessen?",
+  "EMAIL": "E-Mail Adresse",
+  "PASSWORD": "Passwort",
+  "SIGN_UP": "Registrieren",
+  "SIGN_UP_INFO": "Wollen Sie sich bei der Community registrieren?",
+  "RESET_PASSWORD": "Passwort zurücksetzen",
+  "AUTH_ERROR": "Authentifizierung fehlgeschlagen!"
+}

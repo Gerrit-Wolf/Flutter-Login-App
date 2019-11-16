@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/shared/const/routes.dart';
 
 class SignUpCardContent extends StatelessWidget {
@@ -10,10 +11,13 @@ class SignUpCardContent extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Center(
-                child: const Text('Do you want to sign up to the Community?')
-            ),
+              child: Text(
+                AppLocalizations.of(context).translate('SIGN_UP_INFO'),
+              ),            ),
             RaisedButton(
-              child: const Text('Sign Up!'),
+              child: Text(
+                AppLocalizations.of(context).translate('SIGN_UP'),
+              ),
               color: const Color(0xffb2bec3),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),

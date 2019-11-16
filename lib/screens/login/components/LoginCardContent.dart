@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/services/AppLocalizations.dart';
 import '../../../components/inputField/InputField.dart';
 import '../../../components/inputField/const/InputFieldTypes.dart';
 import 'ForgotPasswordButton.dart';
@@ -21,18 +22,26 @@ class LoginCardContentState extends State<LoginCardContent> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('E-Mail Adress', InputFieldTypes.EMAIL, update),
+          child: InputField(
+              AppLocalizations.of(context).translate('EMAIL'),
+              InputFieldTypes.EMAIL,
+              update
+          ),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Password', InputFieldTypes.PASSWORD, update),
+          child: InputField(
+              AppLocalizations.of(context).translate('PASSWORD'),
+              InputFieldTypes.PASSWORD,
+              update
+          ),
         ),
         Container(
             padding: const EdgeInsets.only(
               top: 10.0,
             ),
             width: double.infinity,
-            child: LoginButton(email, password, checkForLoginError)
+            child: LoginButton(email, password, handleError)
         ),
         Container(
           alignment: Alignment.centerRight,
@@ -73,9 +82,9 @@ class LoginCardContentState extends State<LoginCardContent> {
     });
   }
 
-  void checkForLoginError(String message) {
+  void handleError() {
     setState(() {
-      errorMessage = message;
+      errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
       hasError = true;
     });
   }

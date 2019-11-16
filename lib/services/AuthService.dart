@@ -1,43 +1,43 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-  static Future<bool> signIn(String email, String password, Function checkForLoginErrors) async {
+  static Future<bool> signIn(String email, String password, Function handleError) async {
     try {
       if (email == null || password == null || email.isEmpty == true || password.isEmpty) {
-        checkForLoginErrors('Die Eingaben dürfen nicht leer sein!');
+        handleError();
         return false;
       }
       final FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       return user != null;
     } catch (exception) {
-      checkForLoginErrors(exception.message);
+      handleError();
     }
     return false;
   }
 
-  static Future<bool> signUp(String email, String password, Function checkForSignUpErrors) async {
+  static Future<bool> signUp(String email, String password, Function handleError) async {
     try {
       if (email == null || password == null || email.isEmpty == true || password.isEmpty) {
-        checkForSignUpErrors('Die Eingaben dürfen nicht leer sein!');
+        handleError();
         return false;
       }
       final FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
       return user != null;
     } catch (exception) {
-      checkForSignUpErrors(exception.message);
+      handleError();
     }
     return false;
   }
 
-  static Future<void> resetPassword(String email, Function checkForResetPasswordErrors) async {
+  static Future<void> resetPassword(String email, Function handleError) async {
     try {
       if (email == null || email.isEmpty == true) {
-        checkForResetPasswordErrors('Die Eingabe darf nicht leer sein!');
+        handleError();
         return;
       }
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } catch (exception) {
-      checkForResetPasswordErrors(exception.message);
+      handleError();
     }
   }
 }

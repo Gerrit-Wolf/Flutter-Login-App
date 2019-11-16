@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/components/inputField/InputField.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
+import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
 
@@ -20,7 +21,11 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(5.0),
-          child: InputField('Email Adress', InputFieldTypes.EMAIL, update),
+          child: InputField(
+              AppLocalizations.of(context).translate('EMAIL'),
+              InputFieldTypes.EMAIL,
+              update
+          ),
         ),
         Container(
             padding: const EdgeInsets.only(
@@ -28,13 +33,15 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
             ),
             width: double.infinity,
             child: RaisedButton(
-              child: const Text('Reset Password'),
+              child: Text(
+                AppLocalizations.of(context).translate('RESET_PASSWORD'),
+              ),
               color: const Color(0xffb2bec3),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                await AuthService.resetPassword(email, checkForResetPasswordErrors);
+                await AuthService.resetPassword(email, handleError);
                 Navigator.pushNamed(context, Routes.LOGIN);
               },
             )
@@ -68,9 +75,9 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
     });
   }
 
-  void checkForResetPasswordErrors(String message) {
+  void handleError() {
     setState(() {
-      errorMessage = message;
+      errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
       hasError = true;
     });
   }
