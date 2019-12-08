@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:test_app/models/LoginUserData.dart';
 
 class AuthService {
-  static Future<bool> signIn(String email, String password, Function handleError) async {
+  static Future<bool> signIn(LoginUserData userData, Function handleError) async {
     try {
-      if (email == null || password == null || email.isEmpty == true || password.isEmpty) {
+      if (userData.email == null || userData.password == null || userData.email.isEmpty == true || userData.password.isEmpty == true) {
         handleError();
         return false;
       }
-      final FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      final FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: userData.email, password: userData.password);
       return user != null;
     } catch (exception) {
       handleError();
@@ -15,13 +16,13 @@ class AuthService {
     return false;
   }
 
-  static Future<bool> signUp(String email, String password, Function handleError) async {
+  static Future<bool> signUp(LoginUserData userData, Function handleError) async {
     try {
-      if (email == null || password == null || email.isEmpty == true || password.isEmpty) {
+      if (userData.email == null || userData.password == null || userData.email.isEmpty == true || userData.password.isEmpty == true) {
         handleError();
         return false;
       }
-      final FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+      final FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: userData.email, password: userData.password);
       return user != null;
     } catch (exception) {
       handleError();

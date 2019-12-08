@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import '../../../components/inputField/InputField.dart';
 import '../../../components/inputField/const/InputFieldTypes.dart';
@@ -11,9 +12,7 @@ class LoginCardContent extends StatefulWidget {
 }
 
 class LoginCardContentState extends State<LoginCardContent> {
-  String email;
-  String password;
-  String errorMessage;
+  LoginUserData userData = LoginUserData.empty();
   bool hasError;
 
   @override
@@ -41,7 +40,7 @@ class LoginCardContentState extends State<LoginCardContent> {
               top: 10.0,
             ),
             width: double.infinity,
-            child: LoginButton(email, password, handleError)
+            child: LoginButton(userData, handleError)
         ),
         Container(
           alignment: Alignment.centerRight,
@@ -56,7 +55,7 @@ class LoginCardContentState extends State<LoginCardContent> {
             child: Container(
             padding: const EdgeInsets.all(10),
             child: Text(
-              errorMessage ?? '',
+              userData.errorMessage ?? '',
               style: TextStyle(
                 color: Colors.black
               ),
@@ -74,17 +73,17 @@ class LoginCardContentState extends State<LoginCardContent> {
       hasError = false;
 
       if (context == InputFieldTypes.PASSWORD) {
-        password = data;
+        userData.password = data;
         return;
       }
 
-      email = data;
+      userData.email = data;
     });
   }
 
   void handleError() {
     setState(() {
-      errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+      userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
       hasError = true;
     });
   }

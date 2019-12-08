@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/components/inputField/InputField.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
+import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
@@ -11,8 +12,7 @@ class ResetPasswordCardContent extends StatefulWidget {
 }
 
 class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
-  String email;
-  String errorMessage;
+  LoginUserData userData = LoginUserData.empty();
   bool hasError;
 
   @override
@@ -41,7 +41,7 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                await AuthService.resetPassword(email, handleError);
+                await AuthService.resetPassword(userData.email, handleError);
                 Navigator.pushNamed(context, Routes.LOGIN);
               },
             )
@@ -55,7 +55,7 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
               child: Container(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    errorMessage ?? '',
+                    userData.errorMessage ?? '',
                     style: TextStyle(
                         color: Colors.black
                     ),
@@ -71,13 +71,13 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
   void update(String context, String data) {
     setState(() {
       hasError = false;
-      email = data;
+      userData.email = data;
     });
   }
 
   void handleError() {
     setState(() {
-      errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+      userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
       hasError = true;
     });
   }

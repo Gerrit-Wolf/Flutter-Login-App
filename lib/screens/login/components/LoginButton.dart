@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton(this.email, this.password, this.checkForLoginErrors);
+  const LoginButton(this.userData, this.checkForLoginErrors);
 
-  final String email;
-  final String password;
+  final LoginUserData userData;
   final Function checkForLoginErrors;
 
   @override
@@ -21,7 +21,7 @@ class LoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       onPressed: () async {
-        final bool loginSuccess = await AuthService.signIn(email, password, checkForLoginErrors);
+        final bool loginSuccess = await AuthService.signIn(userData, checkForLoginErrors);
 
         if (loginSuccess == true) {
           Navigator.pushNamed(context, Routes.HOME);

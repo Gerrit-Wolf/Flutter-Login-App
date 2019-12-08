@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
+import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
@@ -11,9 +12,7 @@ class SignUpCardContent extends StatefulWidget {
 }
 
 class SignUpCardContentState extends State<SignUpCardContent> {
-  String email;
-  String password;
-  String errorMessage;
+  LoginUserData userData = LoginUserData.empty();
   bool hasError;
 
   @override
@@ -50,7 +49,7 @@ class SignUpCardContentState extends State<SignUpCardContent> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                final bool signUpSuccess = await AuthService.signUp(email, password, handleError);
+                final bool signUpSuccess = await AuthService.signUp(userData, handleError);
 
                 if (signUpSuccess == true) {
                   Navigator.pushNamed(context, Routes.HOME);
@@ -67,7 +66,7 @@ class SignUpCardContentState extends State<SignUpCardContent> {
               child: Container(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    errorMessage ?? '',
+                    userData.errorMessage ?? '',
                     style: TextStyle(
                         color: Colors.black
                     ),
@@ -85,17 +84,17 @@ class SignUpCardContentState extends State<SignUpCardContent> {
       hasError = false;
 
       if (context == InputFieldTypes.PASSWORD) {
-        password = data;
+        userData.password = data;
         return;
       }
 
-      email = data;
+      userData.email = data;
     });
   }
 
   void handleError() {
     setState(() {
-      errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+      userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
       hasError = true;
     });
   }
