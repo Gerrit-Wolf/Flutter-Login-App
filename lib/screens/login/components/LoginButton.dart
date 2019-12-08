@@ -4,11 +4,21 @@ import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton(this.userData, this.checkForLoginErrors);
+class LoginButton extends StatefulWidget {
+  const LoginButton({this.userData, this.onPressed});
 
   final LoginUserData userData;
-  final Function checkForLoginErrors;
+  final Function onPressed;
+
+  @override
+  LoginButtonState createState() => LoginButtonState(userData: userData, onPressed: onPressed);
+}
+
+class LoginButtonState extends State<LoginButton> {
+  LoginButtonState({this.userData, this.onPressed});
+
+  LoginUserData userData;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +31,15 @@ class LoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       onPressed: () async {
-        final bool loginSuccess = await AuthService.signIn(userData, checkForLoginErrors);
+        userData = await AuthService.signIn(userData);
 
-        if (loginSuccess == true) {
+        if (userData.loginSuccess == true) {
           Navigator.pushNamed(context, Routes.HOME);
+          return;
         }
+
+        userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+        onPressed();
       },
     );
   }
