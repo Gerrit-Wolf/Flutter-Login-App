@@ -13,7 +13,6 @@ class SignUpCardContent extends StatefulWidget {
 
 class SignUpCardContentState extends State<SignUpCardContent> {
   LoginUserData userData = LoginUserData.empty();
-  bool hasError;
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +21,17 @@ class SignUpCardContentState extends State<SignUpCardContent> {
         Container(
           padding: const EdgeInsets.all(5.0),
           child: InputField(
-              AppLocalizations.of(context).translate('EMAIL'),
-              InputFieldTypes.EMAIL,
-              update
+              title: AppLocalizations.of(context).translate('EMAIL'),
+              type: InputFieldTypes.EMAIL,
+              userData: userData,
           ),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
           child: InputField(
-              AppLocalizations.of(context).translate('PASSWORD'),
-              InputFieldTypes.PASSWORD,
-              update
+              title: AppLocalizations.of(context).translate('PASSWORD'),
+              type: InputFieldTypes.PASSWORD,
+              userData: userData,
           ),
         ),
         Container(
@@ -49,11 +48,14 @@ class SignUpCardContentState extends State<SignUpCardContent> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                final bool signUpSuccess = await AuthService.signUp(userData, handleError);
+                userData = await AuthService.signUp(userData);
 
-                if (signUpSuccess == true) {
+                if (userData.signUpSuccess == true) {
                   Navigator.pushNamed(context, Routes.HOME);
+                  return;
                 }
+
+                userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
               },
             )
         ),
@@ -73,29 +75,9 @@ class SignUpCardContentState extends State<SignUpCardContent> {
                   )
               )
           ),
-          visible: hasError ?? false,
+          visible: userData.errorMessage != null,
         )
       ],
     );
-  }
-
-  void update(String context, String data) {
-    setState(() {
-      hasError = false;
-
-      if (context == InputFieldTypes.PASSWORD) {
-        userData.password = data;
-        return;
-      }
-
-      userData.email = data;
-    });
-  }
-
-  void handleError() {
-    setState(() {
-      userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-      hasError = true;
-    });
   }
 }

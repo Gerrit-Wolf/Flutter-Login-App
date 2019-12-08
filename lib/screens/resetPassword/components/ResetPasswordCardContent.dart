@@ -13,7 +13,6 @@ class ResetPasswordCardContent extends StatefulWidget {
 
 class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
   LoginUserData userData = LoginUserData.empty();
-  bool hasError;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +21,9 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
         Container(
           padding: const EdgeInsets.all(5.0),
           child: InputField(
-              AppLocalizations.of(context).translate('EMAIL'),
-              InputFieldTypes.EMAIL,
-              update
+              title: AppLocalizations.of(context).translate('EMAIL'),
+              type: InputFieldTypes.EMAIL,
+              userData: userData,
           ),
         ),
         Container(
@@ -41,8 +40,12 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                await AuthService.resetPassword(userData.email, handleError);
-                Navigator.pushNamed(context, Routes.LOGIN);
+                userData = await AuthService.resetPassword(userData);
+                if (userData.resetPasswordSuccess == true) {
+                  Navigator.pushNamed(context, Routes.LOGIN);
+                  return;
+                }
+                userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
               },
             )
         ),
@@ -62,23 +65,9 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
                   )
               )
           ),
-          visible: hasError ?? false,
+          visible: userData.errorMessage != null,
         )
       ],
     );
-  }
-
-  void update(String context, String data) {
-    setState(() {
-      hasError = false;
-      userData.email = data;
-    });
-  }
-
-  void handleError() {
-    setState(() {
-      userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-      hasError = true;
-    });
   }
 }

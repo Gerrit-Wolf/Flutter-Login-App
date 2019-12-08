@@ -13,7 +13,6 @@ class LoginCardContent extends StatefulWidget {
 
 class LoginCardContentState extends State<LoginCardContent> {
   LoginUserData userData = LoginUserData.empty();
-  bool hasError;
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +21,17 @@ class LoginCardContentState extends State<LoginCardContent> {
         Container(
           padding: const EdgeInsets.all(5.0),
           child: InputField(
-              AppLocalizations.of(context).translate('EMAIL'),
-              InputFieldTypes.EMAIL,
-              update
+              title: AppLocalizations.of(context).translate('EMAIL'),
+              type: InputFieldTypes.EMAIL,
+              userData: userData,
           ),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
           child: InputField(
-              AppLocalizations.of(context).translate('PASSWORD'),
-              InputFieldTypes.PASSWORD,
-              update
+              title: AppLocalizations.of(context).translate('PASSWORD'),
+              type: InputFieldTypes.PASSWORD,
+              userData: userData,
           ),
         ),
         Container(
@@ -40,7 +39,9 @@ class LoginCardContentState extends State<LoginCardContent> {
               top: 10.0,
             ),
             width: double.infinity,
-            child: LoginButton(userData, handleError)
+            child: LoginButton(
+              userData: userData,
+            )
         ),
         Container(
           alignment: Alignment.centerRight,
@@ -62,29 +63,9 @@ class LoginCardContentState extends State<LoginCardContent> {
             )
           )
           ),
-          visible: hasError ?? false,
+          visible: userData.errorMessage != null,
         )
       ],
     );
-  }
-
-  void update(String context, String data) {
-    setState(() {
-      hasError = false;
-
-      if (context == InputFieldTypes.PASSWORD) {
-        userData.password = data;
-        return;
-      }
-
-      userData.email = data;
-    });
-  }
-
-  void handleError() {
-    setState(() {
-      userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-      hasError = true;
-    });
   }
 }

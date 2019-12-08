@@ -2,43 +2,45 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test_app/models/LoginUserData.dart';
 
 class AuthService {
-  static Future<bool> signIn(LoginUserData userData, Function handleError) async {
+  static Future<LoginUserData> signIn(LoginUserData userData) async {
     try {
       if (userData.email == null || userData.password == null || userData.email.isEmpty == true || userData.password.isEmpty == true) {
-        handleError();
-        return false;
+        userData.loginSuccess = false;
+        return userData;
       }
       final FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: userData.email, password: userData.password);
-      return user != null;
+      userData.loginSuccess = user != null;
     } catch (exception) {
-      handleError();
+      userData.loginSuccess = false;
     }
-    return false;
+    return userData;
   }
 
-  static Future<bool> signUp(LoginUserData userData, Function handleError) async {
+  static Future<LoginUserData> signUp(LoginUserData userData) async {
     try {
       if (userData.email == null || userData.password == null || userData.email.isEmpty == true || userData.password.isEmpty == true) {
-        handleError();
-        return false;
+        userData.signUpSuccess = false;
+        return userData;
       }
       final FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: userData.email, password: userData.password);
-      return user != null;
+      userData.signUpSuccess = user != null;
     } catch (exception) {
-      handleError();
+      userData.signUpSuccess = false;
     }
-    return false;
+    return userData;
   }
 
-  static Future<void> resetPassword(String email, Function handleError) async {
+  static Future<LoginUserData> resetPassword(LoginUserData userData) async {
     try {
-      if (email == null || email.isEmpty == true) {
-        handleError();
-        return;
+      if (userData.email == null || userData.email.isEmpty == true) {
+        userData.resetPasswordSuccess = false;
+        return userData;
       }
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: userData.email);
+      userData.resetPasswordSuccess = true;
     } catch (exception) {
-      handleError();
+      userData.resetPasswordSuccess = false;
     }
+    return userData;
   }
 }
