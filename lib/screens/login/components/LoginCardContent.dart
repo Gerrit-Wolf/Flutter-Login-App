@@ -24,6 +24,9 @@ class LoginCardContentState extends State<LoginCardContent> {
               title: AppLocalizations.of(context).translate('EMAIL'),
               type: InputFieldTypes.EMAIL,
               userData: userData,
+              onChanged: () {
+                setState(() {});
+              },
           ),
         ),
         Container(
@@ -32,6 +35,9 @@ class LoginCardContentState extends State<LoginCardContent> {
               title: AppLocalizations.of(context).translate('PASSWORD'),
               type: InputFieldTypes.PASSWORD,
               userData: userData,
+              onChanged: () {
+                setState(() {});
+              },
           ),
         ),
         Container(
@@ -41,6 +47,9 @@ class LoginCardContentState extends State<LoginCardContent> {
             width: double.infinity,
             child: LoginButton(
               userData: userData,
+              onPressed: () {
+                setState(() {});
+              },
             )
         ),
         Container(

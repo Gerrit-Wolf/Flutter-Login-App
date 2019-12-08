@@ -24,6 +24,9 @@ class SignUpCardContentState extends State<SignUpCardContent> {
               title: AppLocalizations.of(context).translate('EMAIL'),
               type: InputFieldTypes.EMAIL,
               userData: userData,
+              onChanged: () {
+                setState(() {});
+              },
           ),
         ),
         Container(
@@ -32,6 +35,9 @@ class SignUpCardContentState extends State<SignUpCardContent> {
               title: AppLocalizations.of(context).translate('PASSWORD'),
               type: InputFieldTypes.PASSWORD,
               userData: userData,
+              onChanged: () {
+                setState(() {});
+              },
           ),
         ),
         Container(
@@ -56,6 +62,7 @@ class SignUpCardContentState extends State<SignUpCardContent> {
                 }
 
                 userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+                setState(() {});
               },
             )
         ),

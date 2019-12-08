@@ -13,7 +13,8 @@ class SignUpCardContent extends StatelessWidget {
             Center(
               child: Text(
                 AppLocalizations.of(context).translate('SIGN_UP_INFO'),
-              ),            ),
+              ),
+            ),
             RaisedButton(
               child: Text(
                 AppLocalizations.of(context).translate('SIGN_UP'),

@@ -24,6 +24,9 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
               title: AppLocalizations.of(context).translate('EMAIL'),
               type: InputFieldTypes.EMAIL,
               userData: userData,
+              onChanged: () {
+                setState(() {});
+              },
           ),
         ),
         Container(
@@ -46,6 +49,8 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
                   return;
                 }
                 userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+
+                setState(() {});
               },
             )
         ),
