@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/blocs/LoginUserDataBloc.dart';
 import 'package:test_app/components/inputField/InputField.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
+import 'package:test_app/widgets/BlocProvider.dart';
 
-class ResetPasswordCardContent extends StatefulWidget {
-  @override
-  ResetPasswordCardContentState createState() => ResetPasswordCardContentState();
-}
-
-class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
-  LoginUserData userData = LoginUserData.empty();
+class ResetPasswordCardContent extends StatelessWidget {
+  final LoginUserData userData = LoginUserData.empty();
 
   @override
   Widget build(BuildContext context) {
+    final LoginUserDataBloc userDataBloc = BlocProvider.of<LoginUserDataBloc>(context);
+
     return Column(
       children: <Widget>[
         Container(
@@ -24,9 +23,6 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
               title: AppLocalizations.of(context).translate('EMAIL'),
               type: InputFieldTypes.EMAIL,
               userData: userData,
-              onChanged: () {
-                setState(() {});
-              },
           ),
         ),
         Container(
@@ -43,34 +39,39 @@ class ResetPasswordCardContentState extends State<ResetPasswordCardContent> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                userData = await AuthService.resetPassword(userData);
-                if (userData.resetPasswordSuccess == true) {
+                final LoginUserData updatedData = await AuthService.resetPassword(userData);
+                if (updatedData.resetPasswordSuccess == true) {
                   Navigator.pushNamed(context, Routes.LOGIN);
                   return;
                 }
-                userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-
-                setState(() {});
+                updatedData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+                userDataBloc.updateUserData(updatedData);
               },
             )
         ),
-        Visibility(
-          child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0)
-              ),
-              color: Colors.redAccent,
-              child: Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(
-                    userData.errorMessage ?? '',
-                    style: TextStyle(
-                        color: Colors.black
-                    ),
+        StreamBuilder<LoginUserData>(
+          stream: userDataBloc.outUserData,
+          initialData: LoginUserData.empty(),
+          builder: (BuildContext context, AsyncSnapshot<LoginUserData> snapshot) {
+            return Visibility(
+              child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)
+                  ),
+                  color: Colors.redAccent,
+                  child: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        snapshot.data.errorMessage ?? '',
+                        style: TextStyle(
+                            color: Colors.black
+                        ),
+                      )
                   )
-              )
-          ),
-          visible: userData.errorMessage != null,
+              ),
+              visible: snapshot.data.errorMessage != null,
+            );
+          },
         )
       ],
     );

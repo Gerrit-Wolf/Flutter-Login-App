@@ -21,8 +21,7 @@ class AppLocalizations {
     final Map<String, dynamic> jsonMap = json.decode(jsonString);
 
     localizedString = jsonMap.map((dynamic key, dynamic value) {
-      // ignore: always_specify_types
-      return MapEntry(key, value.toString());
+      return MapEntry<String, String>(key, value.toString());
     });
 
     return true;

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/blocs/LoginUserDataBloc.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
+import 'package:test_app/widgets/BlocProvider.dart';
 
 class InputField extends StatelessWidget {
-  const InputField({this.title, this.type, this.userData, this.onChanged});
+  const InputField({this.title, this.type, this.userData});
 
   final String title;
   final String type;
   final LoginUserData userData;
-  final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
+    final LoginUserDataBloc userDataBloc = BlocProvider.of<LoginUserDataBloc>(context);
+
     return TextField(
       decoration: InputDecoration(
         suffixIcon: Icon(
@@ -30,12 +33,12 @@ class InputField extends StatelessWidget {
 
         if (type == InputFieldTypes.PASSWORD) {
           userData.password = changedData;
-          onChanged();
+          userDataBloc.updateUserData(userData);
           return;
         }
 
         userData.email = changedData;
-        onChanged();
+        userDataBloc.updateUserData(userData);
       },
     );
   }

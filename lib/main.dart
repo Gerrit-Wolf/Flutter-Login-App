@@ -9,8 +9,7 @@ import 'screens/login/index.dart';
 
 void main() {
   runApp(MaterialApp(
-    // ignore: always_specify_types
-    localizationsDelegates: [
+    localizationsDelegates: <LocalizationsDelegate<dynamic>>[
       AppLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,

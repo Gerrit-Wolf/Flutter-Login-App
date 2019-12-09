@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/blocs/LoginUserDataBloc.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
+import 'package:test_app/widgets/BlocProvider.dart';
 import '../../../components/inputField/InputField.dart';
 
-class SignUpCardContent extends StatefulWidget {
-  @override
-  SignUpCardContentState createState() => SignUpCardContentState();
-}
-
-class SignUpCardContentState extends State<SignUpCardContent> {
-  LoginUserData userData = LoginUserData.empty();
+class SignUpCardContent extends StatelessWidget {
+  final LoginUserData userData = LoginUserData.empty();
 
   @override
   Widget build(BuildContext context) {
+    final LoginUserDataBloc userDataBloc = BlocProvider.of<LoginUserDataBloc>(context);
+
     return Column(
       children: <Widget>[
         Container(
@@ -24,9 +23,6 @@ class SignUpCardContentState extends State<SignUpCardContent> {
               title: AppLocalizations.of(context).translate('EMAIL'),
               type: InputFieldTypes.EMAIL,
               userData: userData,
-              onChanged: () {
-                setState(() {});
-              },
           ),
         ),
         Container(
@@ -35,9 +31,6 @@ class SignUpCardContentState extends State<SignUpCardContent> {
               title: AppLocalizations.of(context).translate('PASSWORD'),
               type: InputFieldTypes.PASSWORD,
               userData: userData,
-              onChanged: () {
-                setState(() {});
-              },
           ),
         ),
         Container(
@@ -54,35 +47,42 @@ class SignUpCardContentState extends State<SignUpCardContent> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
-                userData = await AuthService.signUp(userData);
+                final LoginUserData updatedData = await AuthService.signUp(userData);
 
-                if (userData.signUpSuccess == true) {
+                if (updatedData.signUpSuccess == true) {
                   Navigator.pushNamed(context, Routes.HOME);
                   return;
                 }
 
-                userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-                setState(() {});
+                updatedData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+
+                userDataBloc.updateUserData(updatedData);
               },
             )
         ),
-        Visibility(
-          child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0)
-              ),
-              color: Colors.redAccent,
-              child: Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(
-                    userData.errorMessage ?? '',
-                    style: TextStyle(
-                        color: Colors.black
-                    ),
+        StreamBuilder<LoginUserData>(
+          stream: userDataBloc.outUserData,
+          initialData: LoginUserData.empty(),
+          builder: (BuildContext context, AsyncSnapshot<LoginUserData> snapshot) {
+            return Visibility(
+              child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)
+                  ),
+                  color: Colors.redAccent,
+                  child: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        snapshot.data.errorMessage ?? '',
+                        style: TextStyle(
+                            color: Colors.black
+                        ),
+                      )
                   )
-              )
-          ),
-          visible: userData.errorMessage != null,
+              ),
+              visible: snapshot.data.errorMessage != null,
+            );
+          },
         )
       ],
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/blocs/LoginUserDataBloc.dart';
+import 'package:test_app/widgets/BlocProvider.dart';
 import 'components/LoginCardContent.dart';
 import 'components/SignUpCardContent.dart';
 
@@ -31,7 +33,10 @@ class LoginScreenScaffold extends StatelessWidget {
               color: const Color(0Xffffeaa7),
               child: Container(
                 padding: const EdgeInsets.all(20.0),
-                child: LoginCardContent(),
+                child: BlocProvider<LoginUserDataBloc>(
+                  child: LoginCardContent(),
+                  bloc: LoginUserDataBloc(),
+                )
               )
             ),
             Card(

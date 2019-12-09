@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/blocs/LoginUserDataBloc.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/routes.dart';
+import 'package:test_app/widgets/BlocProvider.dart';
 
-class LoginButton extends StatefulWidget {
-  const LoginButton({this.userData, this.onPressed});
+class LoginButton extends StatelessWidget {
+  const LoginButton({this.userData});
 
   final LoginUserData userData;
-  final Function onPressed;
-
-  @override
-  LoginButtonState createState() => LoginButtonState(userData: userData, onPressed: onPressed);
-}
-
-class LoginButtonState extends State<LoginButton> {
-  LoginButtonState({this.userData, this.onPressed});
-
-  LoginUserData userData;
-  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
+    final LoginUserDataBloc userDataBloc = BlocProvider.of<LoginUserDataBloc>(context);
+
     return RaisedButton(
       child: Text(
           AppLocalizations.of(context).translate('LOGIN')
@@ -31,15 +24,15 @@ class LoginButtonState extends State<LoginButton> {
         borderRadius: BorderRadius.circular(15.0),
       ),
       onPressed: () async {
-        userData = await AuthService.signIn(userData);
+        final LoginUserData signedInData = await AuthService.signIn(userData);
 
-        if (userData.loginSuccess == true) {
+        if (signedInData.loginSuccess == true) {
           Navigator.pushNamed(context, Routes.HOME);
           return;
         }
 
-        userData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-        onPressed();
+        signedInData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+        userDataBloc.updateUserData(signedInData);
       },
     );
   }
