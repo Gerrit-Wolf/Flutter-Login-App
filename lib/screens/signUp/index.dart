@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/shared/const/colors.dart';
+import 'package:test_app/shared/const/fileLocation.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 import 'components/SignUpCardContent.dart';
 
@@ -22,7 +23,7 @@ class SignUpScreenScaffold extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               Image(
-                image: const AssetImage('assets/images/logo.png'),
+                image: const AssetImage(FileLocation.LOGO),
                 height: 250.0,
               ),
               Card(

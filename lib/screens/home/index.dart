@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/shared/const/colors.dart';
+import 'package:test_app/shared/const/fileLocation.dart';
 
 class HomeScreenScaffold extends StatelessWidget {
   @override
@@ -19,7 +20,7 @@ class HomeScreenScaffold extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               Image(
-                image: const AssetImage('assets/images/logo.png'),
+                image: const AssetImage(FileLocation.LOGO),
                 height: 250.0,
               ),
               Card(
