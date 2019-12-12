@@ -63,7 +63,7 @@ class ResetPasswordCardContent extends StatelessWidget {
                   ),
                   color: Colors.redAccent,
                   child: Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(
                         snapshot.data ?? '',
                         style: TextStyle(
@@ -84,7 +84,7 @@ class ResetPasswordCardContent extends StatelessWidget {
               return const CircularProgressIndicator();
             }
             return const SizedBox(
-                height: 0
+                height: 0.0
             );
           },
         )

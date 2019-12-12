@@ -41,7 +41,12 @@ class LoginScreenScaffold extends StatelessWidget {
               )
             ),
             Card(
-              margin: const EdgeInsets.only(right: 10.0, left: 10.0, top: 50.0, bottom: 10.0),
+              margin: const EdgeInsets.only(
+                  right: 10.0,
+                  left: 10.0,
+                  top: 50.0,
+                  bottom: 10.0
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0)
               ),
