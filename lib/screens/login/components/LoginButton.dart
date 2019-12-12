@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/blocs/LoginUserDataBloc.dart';
+import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
@@ -13,7 +13,7 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginUserDataBloc userDataBloc = BlocProvider.of<LoginUserDataBloc>(context);
+    final LoginDataBloc loginDataBloc = BlocProvider.of<LoginDataBloc>(context);
 
     return RaisedButton(
       child: Text(
@@ -24,15 +24,17 @@ class LoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       onPressed: () async {
+        loginDataBloc.showLoadingSpinner();
         final LoginUserData signedInData = await AuthService.signIn(userData);
+        loginDataBloc.hideLoadingSpinner();
 
         if (signedInData.loginSuccess == true) {
           Navigator.pushNamed(context, Routes.HOME);
           return;
         }
 
-        signedInData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-        userDataBloc.updateUserData(signedInData);
+        final String errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+        loginDataBloc.updateErrorMessage(errorMessage);
       },
     );
   }

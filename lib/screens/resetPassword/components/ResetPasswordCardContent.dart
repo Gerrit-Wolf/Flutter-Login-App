@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/blocs/LoginUserDataBloc.dart';
+import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/components/inputField/InputField.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
@@ -13,7 +13,7 @@ class ResetPasswordCardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginUserDataBloc userDataBloc = BlocProvider.of<LoginUserDataBloc>(context);
+    final LoginDataBloc loginDataBloc = BlocProvider.of<LoginDataBloc>(context);
 
     return Column(
       children: <Widget>[
@@ -39,20 +39,22 @@ class ResetPasswordCardContent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               onPressed: () async {
+                loginDataBloc.showLoadingSpinner();
                 final LoginUserData updatedData = await AuthService.resetPassword(userData);
+                loginDataBloc.hideLoadingSpinner();
                 if (updatedData.resetPasswordSuccess == true) {
                   Navigator.pushNamed(context, Routes.LOGIN);
                   return;
                 }
-                updatedData.errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
-                userDataBloc.updateUserData(updatedData);
+                final String errorMessage = AppLocalizations.of(context).translate('AUTH_ERROR');
+                loginDataBloc.updateErrorMessage(errorMessage);
               },
             )
         ),
-        StreamBuilder<LoginUserData>(
-          stream: userDataBloc.outUserData,
-          initialData: LoginUserData.empty(),
-          builder: (BuildContext context, AsyncSnapshot<LoginUserData> snapshot) {
+        StreamBuilder<String>(
+          stream: loginDataBloc.outErrorMessage,
+          initialData: null,
+          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
             return Visibility(
               child: Card(
                   shape: RoundedRectangleBorder(
@@ -62,14 +64,26 @@ class ResetPasswordCardContent extends StatelessWidget {
                   child: Container(
                       padding: const EdgeInsets.all(10),
                       child: Text(
-                        snapshot.data.errorMessage ?? '',
+                        snapshot.data ?? '',
                         style: TextStyle(
                             color: Colors.black
                         ),
                       )
                   )
               ),
-              visible: snapshot.data.errorMessage != null,
+              visible: snapshot.data != null,
+            );
+          },
+        ),
+        StreamBuilder<bool>(
+          stream: loginDataBloc.outLoading,
+          initialData: false,
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.data == true) {
+              return const CircularProgressIndicator();
+            }
+            return const SizedBox(
+                height: 0
             );
           },
         )

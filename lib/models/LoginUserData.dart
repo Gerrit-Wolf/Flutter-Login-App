@@ -2,7 +2,6 @@ class LoginUserData {
   LoginUserData(
       this.email,
       this.password,
-      this.errorMessage,
       this.loginSuccess,
       this.signUpSuccess,
       this.resetPasswordSuccess,
@@ -11,7 +10,6 @@ class LoginUserData {
   LoginUserData.empty() {
     email = '';
     password = '';
-    errorMessage = null;
     loginSuccess = false;
     signUpSuccess = false;
     resetPasswordSuccess = false;
@@ -19,7 +17,6 @@ class LoginUserData {
 
   String email;
   String password;
-  String errorMessage;
   bool loginSuccess;
   bool signUpSuccess;
   bool resetPasswordSuccess;

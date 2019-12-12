@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/blocs/LoginUserDataBloc.dart';
+import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
@@ -13,7 +13,7 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginUserDataBloc userDataBloc = BlocProvider.of<LoginUserDataBloc>(context);
+    final LoginDataBloc loginDataBloc = BlocProvider.of<LoginDataBloc>(context);
 
     return TextField(
       decoration: InputDecoration(
@@ -29,16 +29,14 @@ class InputField extends StatelessWidget {
       ),
       obscureText: type == InputFieldTypes.PASSWORD,
       onChanged: (String changedData) {
-        userData.errorMessage = null;
+        loginDataBloc.updateErrorMessage(null);
 
         if (type == InputFieldTypes.PASSWORD) {
           userData.password = changedData;
-          userDataBloc.updateUserData(userData);
           return;
         }
 
         userData.email = changedData;
-        userDataBloc.updateUserData(userData);
       },
     );
   }
