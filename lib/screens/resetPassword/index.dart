@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/screens/ResetPassword/components/ResetPasswordCardContent.dart';
+import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 
 class ResetPasswordScreenScaffold extends StatelessWidget {
@@ -13,8 +14,8 @@ class ResetPasswordScreenScaffold extends StatelessWidget {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: const<Color>[
-                    Color(0xffeccc68),
-                    Color(0xffff6b81)
+                    Color(CustomColors.YELLOW),
+                    Color(CustomColors.PINK)
                   ]
               )
           ),
@@ -29,7 +30,7 @@ class ResetPasswordScreenScaffold extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0)
                   ),
-                  color: const Color(0Xffffeaa7),
+                  color: const Color(CustomColors.LIGHT_YELLOW),
                   child: Container(
                     padding: const EdgeInsets.all(20.0),
                     child: BlocProvider<LoginDataBloc>(

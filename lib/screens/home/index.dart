@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/shared/const/colors.dart';
 
 class HomeScreenScaffold extends StatelessWidget {
   @override
@@ -10,8 +11,8 @@ class HomeScreenScaffold extends StatelessWidget {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: const<Color>[
-                    Color(0xffeccc68),
-                    Color(0xffff6b81)
+                    Color(CustomColors.YELLOW),
+                    Color(CustomColors.PINK)
                   ]
               )
           ),
@@ -26,7 +27,7 @@ class HomeScreenScaffold extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0)
                   ),
-                  color: const Color(0Xffffeaa7),
+                  color: const Color(CustomColors.LIGHT_YELLOW),
                   child: Container(
                     padding: const EdgeInsets.all(20.0),
                   )

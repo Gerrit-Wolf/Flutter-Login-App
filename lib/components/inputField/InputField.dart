@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
+import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 
 class InputField extends StatelessWidget {
@@ -24,7 +25,7 @@ class InputField extends StatelessWidget {
         labelText: title,
         labelStyle: const TextStyle(
           fontFamily: 'Roboto',
-          color: Color(0xff636e72),
+          color: Color(CustomColors.DARK_GREY),
         ),
       ),
       obscureText: type == InputFieldTypes.PASSWORD,

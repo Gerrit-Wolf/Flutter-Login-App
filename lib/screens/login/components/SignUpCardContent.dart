@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/services/AppLocalizations.dart';
+import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/shared/const/routes.dart';
 
 class SignUpCardContent extends StatelessWidget {
@@ -19,7 +20,7 @@ class SignUpCardContent extends StatelessWidget {
               child: Text(
                 AppLocalizations.of(context).translate('SIGN_UP'),
               ),
-              color: const Color(0xffb2bec3),
+              color: const Color(CustomColors.GREY),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),

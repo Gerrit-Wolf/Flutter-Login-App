@@ -3,6 +3,7 @@ import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
+import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/shared/const/routes.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 
@@ -19,7 +20,7 @@ class LoginButton extends StatelessWidget {
       child: Text(
           AppLocalizations.of(context).translate('LOGIN')
       ),
-      color: const Color(0xffb2bec3),
+      color: const Color(CustomColors.GREY),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
