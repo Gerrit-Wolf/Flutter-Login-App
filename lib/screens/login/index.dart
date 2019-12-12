@@ -24,7 +24,7 @@ class LoginScreenScaffold extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Image(
-              image: const AssetImage(FileLocation.LOGO),
+              image: const AssetImage(FileLocations.LOGO),
               height: 250.0,
             ),
             Card(
