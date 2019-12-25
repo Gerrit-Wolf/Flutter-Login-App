@@ -1,10 +1,16 @@
 {
-  "LOGIN": "Login",
+  "LOGIN": "LOGIN",
   "FORGOT_PASSWORD": "Forgot Password?",
   "EMAIL": "E-Mail adress",
   "PASSWORD": "Password",
-  "SIGN_UP": "Sign Up",
-  "SIGN_UP_INFO": "Do you want to sign up to the Community?",
+  "REGISTER": "REGISTER",
   "RESET_PASSWORD": "Reset Password",
-  "AUTH_ERROR": "Authentification failed."
+  "AUTH_ERROR": "Authentification failed.",
+  "HOME_TITLE": "Please sign in or register to confirm & view your explorations",
+  "HOME_TEXT": "After logging in you'll also be able to explore the hidden features of this wonderful app.",
+  "LOGIN_TITLE": "Please sign in to confirm & view your explorations",
+  "EMAIL_HINT": "Please enter your email adress here ...",
+  "PASSWORD_HINT": "Please enter your password here ...",
+  "REGISTER_TITLE": "Please register to confirm & view your explorations",
+  "RESET_PASSWORD_TITLE": "Please enter your E-Mail adress to get a new password"
 }

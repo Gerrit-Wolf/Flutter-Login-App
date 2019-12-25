@@ -6,10 +6,11 @@ import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
 import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/shared/const/routes.dart';
+import 'package:test_app/shared/const/textStyleOptions.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 import '../../../components/inputField/InputField.dart';
 
-class SignUpCardContent extends StatelessWidget {
+class RegisterContent extends StatelessWidget {
   final LoginUserData userData = LoginUserData.empty();
 
   @override
@@ -19,40 +20,49 @@ class SignUpCardContent extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          padding: const EdgeInsets.all(5.0),
-          child: InputField(
-              title: AppLocalizations.of(context).translate('EMAIL'),
-              type: InputFieldTypes.EMAIL,
-              userData: userData,
+          padding: const EdgeInsets.all(30.0),
+          child: Text(
+            AppLocalizations.of(context).translate('REGISTER_TITLE'),
+            style: TextStyleOptions.loginTitle,
+            textAlign: TextAlign.center,
           ),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
           child: InputField(
-              title: AppLocalizations.of(context).translate('PASSWORD'),
-              type: InputFieldTypes.PASSWORD,
-              userData: userData,
+            title: AppLocalizations.of(context).translate('EMAIL'),
+            type: InputFieldTypes.EMAIL,
+            userData: userData,
+            hintText: AppLocalizations.of(context).translate('EMAIL_HINT'),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(5.0),
+          child: InputField(
+            title: AppLocalizations.of(context).translate('PASSWORD'),
+            type: InputFieldTypes.PASSWORD,
+            userData: userData,
+            hintText: AppLocalizations.of(context).translate('PASSWORD_HINT'),
           ),
         ),
         Container(
             padding: const EdgeInsets.only(
-              top: 10.0,
+              top: 50.0,
             ),
             width: double.infinity,
-            child: RaisedButton(
+            child: MaterialButton(
               child: Text(
-                AppLocalizations.of(context).translate('SIGN_UP'),
+                AppLocalizations.of(context).translate('REGISTER'),
               ),
-              color: const Color(CustomColors.GREY),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              color: const Color(CustomColors.WHITE),
+              minWidth: 250.0,
+              height: 47.0,
               onPressed: () async {
                 loginDataBloc.showLoadingSpinner();
-                final LoginUserData updatedData = await AuthService.signUp(userData);
+                final LoginUserData updatedData = await AuthService.register(userData);
                 loginDataBloc.hideLoadingSpinner();
 
-                if (updatedData.signUpSuccess == true) {
+                if (updatedData.registerSuccess == true) {
                   Navigator.pushNamed(context, Routes.HOME);
                   return;
                 }
@@ -66,23 +76,23 @@ class SignUpCardContent extends StatelessWidget {
           stream: loginDataBloc.outErrorMessage,
           initialData: null,
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            return Visibility(
-              child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)
-                  ),
-                  color: Colors.redAccent,
-                  child: Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        snapshot.data ?? '',
-                        style: TextStyle(
-                            color: Colors.black
-                        ),
-                      )
-                  )
+            if (snapshot.data == null) {
+              return const SizedBox(
+                height: 0.0
+              );
+            }
+            return Container(
+              color: Colors.redAccent,
+              padding: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.only(
+                top: 30.0,
               ),
-              visible: snapshot.data != null,
+              child: Text(
+                snapshot.data ?? '',
+                style: TextStyle(
+                  color: Colors.black
+                ),
+              )
             );
           },
         ),

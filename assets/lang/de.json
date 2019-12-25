@@ -1,10 +1,16 @@
 {
-  "LOGIN": "Anmelden",
+  "LOGIN": "ANMELDEN",
   "FORGOT_PASSWORD": "Passwort vergessen?",
   "EMAIL": "E-Mail Adresse",
   "PASSWORD": "Passwort",
-  "SIGN_UP": "Registrieren",
-  "SIGN_UP_INFO": "Wollen Sie sich bei der Community registrieren?",
+  "REGISTER": "REGISTRIEREN",
   "RESET_PASSWORD": "Passwort zurücksetzen",
-  "AUTH_ERROR": "Authentifizierung fehlgeschlagen!"
+  "AUTH_ERROR": "Authentifizierung fehlgeschlagen!",
+  "HOME_TITLE": "Bitte loggen oder registrieren Sie sich um Ihre Entdeckungen zu bestätigen & sehen",
+  "HOME_TEXT": "Nachdem Sie sich eingeloggt haben können Sie versteckte Features dieser wunderbaren App entdecken.",
+  "LOGIN_TITLE": "Bitte loggen Sie sich ein um Ihre Entdeckungen zu bestätigen & sehen",
+  "EMAIL_HINT": "Bitte geben Sie hier Ihre Email Adresse ein ...",
+  "PASSWORD_HINT": "Bitte geben Sie hier Ihr Passwort ein ...",
+  "REGISTER_TITLE": "Bitte registrieren Sie sich um Ihre Entdeckungen zu bestätigen & sehen",
+  "RESET_PASSWORD_TITLE": "Bitte geben Sie Ihre E-Mail Adresse ein um ein neues Passwort zu erhalten"
 }

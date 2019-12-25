@@ -1,48 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
-import 'package:test_app/screens/ResetPassword/components/ResetPasswordCardContent.dart';
+import 'package:test_app/screens/resetPassword/components/ResetPasswordContent.dart';
 import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/shared/const/fileLocation.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 
-class ResetPasswordScreenScaffold extends StatelessWidget {
+class ResetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: const<Color>[
-                    Color(CustomColors.YELLOW),
-                    Color(CustomColors.PINK)
-                  ]
-              )
-          ),
-          child: ListView(
-            children: <Widget>[
-              Image(
-                image: const AssetImage(FileLocations.LOGO),
-                height: 250.0,
-              ),
-              Card(
-                  margin: const EdgeInsets.all(10.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)
-                  ),
-                  color: const Color(CustomColors.LIGHT_YELLOW),
-                  child: Container(
-                    padding: const EdgeInsets.all(20.0),
-                    child: BlocProvider<LoginDataBloc>(
-                      bloc: LoginDataBloc(),
-                      child: ResetPasswordCardContent(),
-                    )
-                  )
-              ),
-            ],
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: const AssetImage(FileLocations.BACKGROUND_SKY),
+          fit: BoxFit.cover,
         )
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: ListView(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.only(
+                top: 100.0,
+                bottom: 50.0,
+              ),
+              height: 250.0,
+              child: Image.asset(FileLocations.LOGO),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: const Color(CustomColors.GREY).withAlpha(30),
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(20.0),
+                child: BlocProvider<LoginDataBloc>(
+                  child: ResetPasswordContent(),
+                  bloc: LoginDataBloc(),
+                )
+              )
+            ),
+          ],
+        ),
+      )
     );
   }
 }

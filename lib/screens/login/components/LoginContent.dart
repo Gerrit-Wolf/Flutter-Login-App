@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
+import 'package:test_app/shared/const/textStyleOptions.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 import '../../../components/inputField/InputField.dart';
 import '../../../components/inputField/const/InputFieldTypes.dart';
 import 'ForgotPasswordButton.dart';
 import 'LoginButton.dart';
 
-class LoginCardContent extends StatelessWidget {
+class LoginContent extends StatelessWidget {
   final LoginUserData userData = LoginUserData.empty();
 
   @override
@@ -18,24 +19,34 @@ class LoginCardContent extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          padding: const EdgeInsets.all(5.0),
-          child: InputField(
-              title: AppLocalizations.of(context).translate('EMAIL'),
-              type: InputFieldTypes.EMAIL,
-              userData: userData,
+          padding: const EdgeInsets.all(30.0),
+          child: Text(
+            AppLocalizations.of(context).translate('LOGIN_TITLE'),
+            style: TextStyleOptions.loginTitle,
+            textAlign: TextAlign.center,
           ),
         ),
         Container(
           padding: const EdgeInsets.all(5.0),
           child: InputField(
-              title: AppLocalizations.of(context).translate('PASSWORD'),
-              type: InputFieldTypes.PASSWORD,
-              userData: userData,
+            title: AppLocalizations.of(context).translate('EMAIL'),
+            type: InputFieldTypes.EMAIL,
+            userData: userData,
+            hintText: AppLocalizations.of(context).translate('EMAIL_HINT'),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(5.0),
+          child: InputField(
+            title: AppLocalizations.of(context).translate('PASSWORD'),
+            type: InputFieldTypes.PASSWORD,
+            userData: userData,
+            hintText: AppLocalizations.of(context).translate('PASSWORD_HINT'),
           ),
         ),
         Container(
             padding: const EdgeInsets.only(
-              top: 10.0,
+              top: 50.0,
             ),
             width: double.infinity,
             child: LoginButton(
@@ -50,23 +61,23 @@ class LoginCardContent extends StatelessWidget {
           stream: loginDataBloc.outErrorMessage,
           initialData: null,
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            return Visibility(
-              child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)
-                  ),
-                  color: Colors.redAccent,
-                  child: Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        snapshot.data ?? '',
-                        style: TextStyle(
-                            color: Colors.black
-                        ),
-                      )
-                  )
+            if (snapshot.data == null) {
+              return const SizedBox(
+                height: 0.0
+              );
+            }
+            return Container(
+              color: Colors.redAccent,
+              padding: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.only(
+                top: 30.0,
               ),
-              visible: snapshot.data != null,
+              child: Text(
+                snapshot.data ?? '',
+                style: TextStyle(
+                  color: Colors.black
+                ),
+              )
             );
           }
         ),
@@ -81,7 +92,7 @@ class LoginCardContent extends StatelessWidget {
                 height: 0.0
             );
           },
-        )
+        ),
       ],
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:test_app/screens/ResetPassword/index.dart';
 import 'package:test_app/screens/home/index.dart';
-import 'package:test_app/screens/signUp/index.dart';
+import 'package:test_app/screens/register/index.dart';
+import 'package:test_app/screens/resetPassword/index.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/shared/const/routes.dart';
 import 'screens/login/index.dart';
@@ -29,10 +29,10 @@ void main() {
     },
     title: 'Flutter TestApp',
     routes: <String, WidgetBuilder>{
-      Routes.LOGIN: (BuildContext context) => LoginScreenScaffold(),
-      Routes.SIGN_UP: (BuildContext context) => SignUpScreenScaffold(),
-      Routes.RESET_PASSWORD: (BuildContext context) => ResetPasswordScreenScaffold(),
-      Routes.HOME: (BuildContext context) => HomeScreenScaffold(),
+      Routes.HOME: (BuildContext context) => HomeScreen(),
+      Routes.LOGIN: (BuildContext context) => LoginScreen(),
+      Routes.REGISTER: (BuildContext context) => RegisterScreen(),
+      Routes.RESET_PASSWORD: (BuildContext context) => ResetPasswordScreen(),
     },
   ));
 }

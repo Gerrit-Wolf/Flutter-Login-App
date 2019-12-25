@@ -3,7 +3,7 @@ class LoginUserData {
       this.email,
       this.password,
       this.loginSuccess,
-      this.signUpSuccess,
+      this.registerSuccess,
       this.resetPasswordSuccess,
   );
 
@@ -11,13 +11,13 @@ class LoginUserData {
     email = '';
     password = '';
     loginSuccess = false;
-    signUpSuccess = false;
+    registerSuccess = false;
     resetPasswordSuccess = false;
   }
 
   String email;
   String password;
   bool loginSuccess;
-  bool signUpSuccess;
+  bool registerSuccess;
   bool resetPasswordSuccess;
 }

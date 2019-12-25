@@ -3,9 +3,9 @@ import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/shared/const/fileLocation.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
-import 'components/LoginContent.dart';
+import 'components/RegisterContent.dart';
 
-class LoginScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: BlocProvider<LoginDataBloc>(
-                  child: LoginContent(),
+                  child: RegisterContent(),
                   bloc: LoginDataBloc(),
                 )
               )

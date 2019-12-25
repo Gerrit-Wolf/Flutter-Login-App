@@ -16,16 +16,16 @@ class AuthService {
     return userData;
   }
 
-  static Future<LoginUserData> signUp(LoginUserData userData) async {
+  static Future<LoginUserData> register(LoginUserData userData) async {
     try {
       if (userData.email == null || userData.password == null || userData.email.isEmpty == true || userData.password.isEmpty == true) {
-        userData.signUpSuccess = false;
+        userData.registerSuccess = false;
         return userData;
       }
       final FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: userData.email, password: userData.password);
-      userData.signUpSuccess = user != null;
+      userData.registerSuccess = user != null;
     } catch (exception) {
-      userData.signUpSuccess = false;
+      userData.registerSuccess = false;
     }
     return userData;
   }

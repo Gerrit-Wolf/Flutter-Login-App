@@ -45,6 +45,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
+    - assets/images/background_sky.jpeg
     - assets/lang/en.json
     - assets/lang/de.json
 

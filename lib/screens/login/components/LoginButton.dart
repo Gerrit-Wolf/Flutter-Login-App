@@ -16,14 +16,13 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginDataBloc loginDataBloc = BlocProvider.of<LoginDataBloc>(context);
 
-    return RaisedButton(
+    return MaterialButton(
       child: Text(
           AppLocalizations.of(context).translate('LOGIN')
       ),
-      color: const Color(CustomColors.GREY),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
+      color: const Color(CustomColors.WHITE),
+      minWidth: 250.0,
+      height: 47.0,
       onPressed: () async {
         loginDataBloc.showLoadingSpinner();
         final LoginUserData signedInData = await AuthService.signIn(userData);
