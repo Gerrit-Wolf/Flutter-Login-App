@@ -57,7 +57,7 @@ class ResetPasswordContentState extends State<ResetPasswordContent> {
                 loginDataBloc.showLoadingSpinner();
                 final LoginUserData updatedData = await AuthService.resetPassword(userData);
                 loginDataBloc.hideLoadingSpinner();
-                if (updatedData.resetPasswordSuccess == true) {
+                if (updatedData.actionSuccess == true) {
                   Navigator.pushNamed(context, Routes.LOGIN);
                   return;
                 }

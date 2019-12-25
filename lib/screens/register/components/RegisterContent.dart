@@ -67,7 +67,7 @@ class RegisterContentState extends State<RegisterContent> {
                 final LoginUserData updatedData = await AuthService.register(userData);
                 loginDataBloc.hideLoadingSpinner();
 
-                if (updatedData.registerSuccess == true) {
+                if (updatedData.actionSuccess == true) {
                   Navigator.pushNamed(context, Routes.HOME);
                   return;
                 }

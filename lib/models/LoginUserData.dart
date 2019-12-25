@@ -1,23 +1,17 @@
 class LoginUserData {
   LoginUserData(
-      this.email,
-      this.password,
-      this.loginSuccess,
-      this.registerSuccess,
-      this.resetPasswordSuccess,
+    this.email,
+    this.password,
+    this.actionSuccess,
   );
 
   LoginUserData.empty() {
-    email = '';
-    password = '';
-    loginSuccess = false;
-    registerSuccess = false;
-    resetPasswordSuccess = false;
+    email = null;
+    password = null;
+    actionSuccess = false;
   }
 
   String email;
   String password;
-  bool loginSuccess;
-  bool registerSuccess;
-  bool resetPasswordSuccess;
+  bool actionSuccess;
 }

@@ -9,9 +9,9 @@ class AuthService {
         return userData;
       }
       final FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: userData.email, password: userData.password);
-      userData.loginSuccess = user != null;
+      userData.actionSuccess = user != null;
     } catch (exception) {
-      userData.loginSuccess = false;
+      userData.actionSuccess = false;
     }
     return userData;
   }
@@ -23,9 +23,9 @@ class AuthService {
         return userData;
       }
       final FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: userData.email, password: userData.password);
-      userData.registerSuccess = user != null;
+      userData.actionSuccess = user != null;
     } catch (exception) {
-      userData.registerSuccess = false;
+      userData.actionSuccess = false;
     }
     return userData;
   }
@@ -37,9 +37,9 @@ class AuthService {
         return userData;
       }
       await FirebaseAuth.instance.sendPasswordResetEmail(email: userData.email);
-      userData.resetPasswordSuccess = true;
+      userData.actionSuccess = true;
     } catch (exception) {
-      userData.resetPasswordSuccess = false;
+      userData.actionSuccess = false;
     }
     return userData;
   }

@@ -28,7 +28,7 @@ class LoginButton extends StatelessWidget {
         final LoginUserData signedInData = await AuthService.login(userData);
         loginDataBloc.hideLoadingSpinner();
 
-        if (signedInData.loginSuccess == true) {
+        if (signedInData.actionSuccess == true) {
           Navigator.pushNamed(context, Routes.HOME);
           return;
         }
