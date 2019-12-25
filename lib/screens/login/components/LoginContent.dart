@@ -9,7 +9,12 @@ import '../../../components/inputField/const/InputFieldTypes.dart';
 import 'ForgotPasswordButton.dart';
 import 'LoginButton.dart';
 
-class LoginContent extends StatelessWidget {
+class LoginContent extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => LoginContentState();
+}
+
+class LoginContentState extends State<LoginContent> {
   final LoginUserData userData = LoginUserData.empty();
 
   @override

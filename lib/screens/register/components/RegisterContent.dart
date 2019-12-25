@@ -10,7 +10,12 @@ import 'package:test_app/shared/const/textStyleOptions.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 import '../../../components/inputField/InputField.dart';
 
-class RegisterContent extends StatelessWidget {
+class RegisterContent extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => RegisterContentState();
+}
+
+class RegisterContentState extends State<RegisterContent> {
   final LoginUserData userData = LoginUserData.empty();
 
   @override

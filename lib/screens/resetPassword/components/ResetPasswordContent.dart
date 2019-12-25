@@ -10,7 +10,12 @@ import 'package:test_app/shared/const/routes.dart';
 import 'package:test_app/shared/const/textStyleOptions.dart';
 import 'package:test_app/widgets/BlocProvider.dart';
 
-class ResetPasswordContent extends StatelessWidget {
+class ResetPasswordContent extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => ResetPasswordContentState();
+}
+
+class ResetPasswordContentState extends State<ResetPasswordContent> {
   final LoginUserData userData = LoginUserData.empty();
 
   @override
