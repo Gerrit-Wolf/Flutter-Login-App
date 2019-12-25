@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test_app/models/LoginUserData.dart';
 
 class AuthService {
-  static Future<LoginUserData> signIn(LoginUserData userData) async {
+  static Future<LoginUserData> login(LoginUserData userData) async {
     try {
       if (userData.email == null || userData.password == null || userData.email.isEmpty == true || userData.password.isEmpty == true) {
         userData.loginSuccess = false;
