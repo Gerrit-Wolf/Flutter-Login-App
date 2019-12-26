@@ -29,6 +29,10 @@ class LoginDataBloc extends BlocBase {
     _inErrorMessage.add(message);
   }
 
+  void clearErrorMessage() {
+    _inErrorMessage.add(null);
+  }
+
   void showLoadingSpinner() {
     _inLoading.add(true);
   }

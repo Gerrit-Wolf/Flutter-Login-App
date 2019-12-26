@@ -38,7 +38,7 @@ class InputField extends StatelessWidget {
       style: TextStyleOptions.defaultText,
       obscureText: type == InputFieldTypes.PASSWORD,
       onChanged: (String changedData) {
-        loginDataBloc.updateErrorMessage(null);
+        loginDataBloc.clearErrorMessage();
 
         if (type == InputFieldTypes.PASSWORD) {
           userData.password = changedData;
