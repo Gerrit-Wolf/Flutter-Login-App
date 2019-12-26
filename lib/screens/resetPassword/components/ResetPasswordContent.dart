@@ -44,6 +44,7 @@ class ResetPasswordContentState extends State<ResetPasswordContent> {
         Container(
             padding: const EdgeInsets.only(
               top: 50.0,
+              bottom: 20.0,
             ),
             width: double.infinity,
             child: MaterialButton(
