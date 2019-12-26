@@ -64,10 +64,10 @@ class RegisterContentState extends State<RegisterContent> {
               height: 47.0,
               onPressed: () async {
                 loginDataBloc.showLoadingSpinner();
-                final LoginUserData updatedData = await AuthService.register(userData);
+                final bool actionSuccess = await AuthService.register(userData);
                 loginDataBloc.hideLoadingSpinner();
 
-                if (updatedData.actionSuccess == true) {
+                if (actionSuccess == true) {
                   Navigator.pushNamed(context, Routes.HOME);
                   return;
                 }

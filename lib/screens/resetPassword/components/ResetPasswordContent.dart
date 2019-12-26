@@ -55,9 +55,9 @@ class ResetPasswordContentState extends State<ResetPasswordContent> {
               height: 47.0,
               onPressed: () async {
                 loginDataBloc.showLoadingSpinner();
-                final LoginUserData updatedData = await AuthService.resetPassword(userData);
+                final bool actionSuccess = await AuthService.resetPassword(userData);
                 loginDataBloc.hideLoadingSpinner();
-                if (updatedData.actionSuccess == true) {
+                if (actionSuccess == true) {
                   Navigator.pushNamed(context, Routes.LOGIN);
                   return;
                 }

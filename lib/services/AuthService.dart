@@ -2,37 +2,32 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test_app/models/LoginUserData.dart';
 
 class AuthService {
-  static Future<LoginUserData> login(LoginUserData userData) async {
+  static Future<bool> login(LoginUserData userData) async {
     try {
       _checkUserDataValidity(userData);
-      final FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: userData.email, password: userData.password);
-      userData.actionSuccess = user != null;
+      return await FirebaseAuth.instance.signInWithEmailAndPassword(email: userData.email, password: userData.password) != null;
     } catch (exception) {
-      userData.actionSuccess = false;
+      return false;
     }
-    return userData;
   }
 
-  static Future<LoginUserData> register(LoginUserData userData) async {
+  static Future<bool> register(LoginUserData userData) async {
     try {
       _checkUserDataValidity(userData);
-      final FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: userData.email, password: userData.password);
-      userData.actionSuccess = user != null;
+      return await FirebaseAuth.instance.createUserWithEmailAndPassword(email: userData.email, password: userData.password) != null;
     } catch (exception) {
-      userData.actionSuccess = false;
+      return false;
     }
-    return userData;
   }
 
-  static Future<LoginUserData> resetPassword(LoginUserData userData) async {
+  static Future<bool> resetPassword(LoginUserData userData) async {
     try {
       _checkEmailValidity(userData.email);
       await FirebaseAuth.instance.sendPasswordResetEmail(email: userData.email);
-      userData.actionSuccess = true;
+      return true;
     } catch (exception) {
-      userData.actionSuccess = false;
+      return false;
     }
-    return userData;
   }
 
   static void _checkUserDataValidity(LoginUserData userData) {
