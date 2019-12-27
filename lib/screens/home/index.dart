@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/components/buttons/PrimaryButton.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/shared/const/colors.dart';
 import 'package:test_app/shared/const/fileLocation.dart';
@@ -54,13 +55,9 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(40.0),
               child: Column(
                 children: <Widget>[
-                  MaterialButton(
+                  PrimaryButton(
                     color: const Color(CustomColors.WHITE),
-                    child: Text(
-                      AppLocalizations.of(context).translate('LOGIN')
-                    ),
-                    minWidth: 250.0,
-                    height: 47.0,
+                    buttonText: AppLocalizations.of(context).translate('LOGIN'),
                     onPressed: (){
                       Navigator.pushNamed(context, Routes.LOGIN);
                     },
@@ -68,13 +65,9 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 40.0,
                   ),
-                  MaterialButton(
+                  PrimaryButton(
                     color: const Color(CustomColors.BABY_BLUE),
-                    child: Text(
-                      AppLocalizations.of(context).translate('REGISTER')
-                    ),
-                    minWidth: 250.0,
-                    height: 47.0,
+                    buttonText: AppLocalizations.of(context).translate('REGISTER'),
                     onPressed: (){
                       Navigator.pushNamed(context, Routes.REGISTER);
                     },

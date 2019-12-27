@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
+import 'package:test_app/components/buttons/PrimaryButton.dart';
 import 'package:test_app/components/inputField/InputField.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
@@ -47,13 +48,9 @@ class ResetPasswordContentState extends State<ResetPasswordContent> {
               bottom: 20.0,
             ),
             width: double.infinity,
-            child: MaterialButton(
-              child: Text(
-                AppLocalizations.of(context).translate('RESET_PASSWORD'),
-              ),
-              color: const Color(CustomColors.WHITE),
-              minWidth: 250.0,
-              height: 47.0,
+            child: PrimaryButton(
+              buttonText: AppLocalizations.of(context).translate('RESET_PASSWORD'),
+              color: Color(CustomColors.WHITE),
               onPressed: () async {
                 loginDataBloc.showLoadingSpinner();
                 final bool actionSuccess = await AuthService.resetPassword(userData);

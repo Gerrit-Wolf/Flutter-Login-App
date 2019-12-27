@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
+import 'package:test_app/components/buttons/PrimaryButton.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
 import 'package:test_app/services/AuthService.dart';
@@ -16,13 +17,9 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginDataBloc loginDataBloc = BlocProvider.of<LoginDataBloc>(context);
 
-    return MaterialButton(
-      child: Text(
-          AppLocalizations.of(context).translate('LOGIN')
-      ),
+    return PrimaryButton(
+      buttonText: AppLocalizations.of(context).translate('LOGIN'),
       color: const Color(CustomColors.WHITE),
-      minWidth: 250.0,
-      height: 47.0,
       onPressed: () async {
         loginDataBloc.showLoadingSpinner();
         final bool actionSuccess = await AuthService.login(userData);

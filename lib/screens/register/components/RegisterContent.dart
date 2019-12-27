@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
+import 'package:test_app/components/buttons/PrimaryButton.dart';
 import 'package:test_app/components/inputField/const/InputFieldTypes.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AppLocalizations.dart';
@@ -56,13 +57,9 @@ class RegisterContentState extends State<RegisterContent> {
               bottom: 20.0,
             ),
             width: double.infinity,
-            child: MaterialButton(
-              child: Text(
-                AppLocalizations.of(context).translate('REGISTER'),
-              ),
+            child: PrimaryButton(
+              buttonText: AppLocalizations.of(context).translate('REGISTER'),
               color: const Color(CustomColors.WHITE),
-              minWidth: 250.0,
-              height: 47.0,
               onPressed: () async {
                 loginDataBloc.showLoadingSpinner();
                 final bool actionSuccess = await AuthService.register(userData);
