@@ -29,22 +29,18 @@ class HomeScreen extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(30.0, 70.0, 30.0, 0.0),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    AppLocalizations.of(context).translate('HOME_TITLE'),
-                    style: TextStyleOptions.loginTitle,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 40.0,
-                  ),
-                  Text(
-                    AppLocalizations.of(context).translate('HOME_TEXT'),
-                    style: TextStyleOptions.loginText,
-                    textAlign: TextAlign.center,
-                  )
-                ]
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: AppLocalizations.of(context).translate('HOME_TITLE'),
+                  style: TextStyleOptions.loginTitle,
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: '\n\n${AppLocalizations.of(context).translate('HOME_TEXT')}',
+                      style: TextStyleOptions.loginText,
+                    )
+                  ]
+                )
               )
             ),
             Container(
