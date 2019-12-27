@@ -28,11 +28,7 @@ class HomeScreen extends StatelessWidget {
               child: Image.asset(FileLocations.LOGO),
             ),
             Container(
-              padding: const EdgeInsets.only(
-                top: 70.0,
-                left: 30.0,
-                right: 30.0
-              ),
+              padding: const EdgeInsets.fromLTRB(30.0, 70.0, 30.0, 0.0),
               child: Column(
                 children: <Widget>[
                   Text(
