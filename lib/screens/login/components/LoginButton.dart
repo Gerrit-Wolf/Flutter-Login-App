@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/components/buttons/PrimaryButton.dart';
@@ -21,8 +22,9 @@ class LoginButton extends StatelessWidget {
       buttonText: AppLocalizations.of(context).translate('LOGIN'),
       color: const Color(CustomColors.WHITE),
       onPressed: () async {
+        final AuthService authService = AuthService(firebaseAuth: FirebaseAuth.instance);
         loginDataBloc.showLoadingSpinner();
-        final bool actionSuccess = await AuthService.login(userData);
+        final bool actionSuccess = await authService.login(userData);
         loginDataBloc.hideLoadingSpinner();
 
         if (actionSuccess == true) {

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/blocs/LoginDataBloc.dart';
 import 'package:test_app/components/buttons/PrimaryButton.dart';
@@ -50,10 +51,11 @@ class ResetPasswordContentState extends State<ResetPasswordContent> {
             width: double.infinity,
             child: PrimaryButton(
               buttonText: AppLocalizations.of(context).translate('RESET_PASSWORD'),
-              color: Color(CustomColors.WHITE),
+              color: const Color(CustomColors.WHITE),
               onPressed: () async {
+                final AuthService authService = AuthService(firebaseAuth: FirebaseAuth.instance);
                 loginDataBloc.showLoadingSpinner();
-                final bool actionSuccess = await AuthService.resetPassword(userData);
+                final bool actionSuccess = await authService.resetPassword(userData);
                 loginDataBloc.hideLoadingSpinner();
                 if (actionSuccess == true) {
                   Navigator.pushNamed(context, Routes.LOGIN);

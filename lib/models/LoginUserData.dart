@@ -1,8 +1,5 @@
 class LoginUserData {
-  LoginUserData(
-    this.email,
-    this.password,
-  );
+  LoginUserData({this.email, this.password});
 
   LoginUserData.empty() {
     email = null;
