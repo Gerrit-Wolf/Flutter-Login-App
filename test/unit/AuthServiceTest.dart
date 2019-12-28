@@ -11,12 +11,12 @@ void main() {
     password: '123456',
   );
 
-  final LoginUserData testEmptyValidUserData = LoginUserData(
+  final LoginUserData testEmptyUserData = LoginUserData(
     email: '',
     password: '',
   );
 
-  final LoginUserData testNullValidUserData = LoginUserData(
+  final LoginUserData testNullUserData = LoginUserData(
     email: null,
     password: null,
   );
@@ -76,12 +76,12 @@ void main() {
     });
 
     test('Login should not work with null user data', () async {
-      final bool actionSuccess = await authService.login(testNullValidUserData);
+      final bool actionSuccess = await authService.login(testNullUserData);
 
       verifyNever(
         firebaseAuthMock.signInWithEmailAndPassword(
-          email: testNullValidUserData.email,
-          password: testNullValidUserData.password,
+          email: testNullUserData.email,
+          password: testNullUserData.password,
         )
       ).called(0);
 
@@ -89,12 +89,12 @@ void main() {
     });
 
     test('Login should not work with empty user data', () async {
-      final bool actionSuccess = await authService.login(testEmptyValidUserData);
+      final bool actionSuccess = await authService.login(testEmptyUserData);
 
       verifyNever(
         firebaseAuthMock.signInWithEmailAndPassword(
-          email: testEmptyValidUserData.email,
-          password: testEmptyValidUserData.password,
+          email: testEmptyUserData.email,
+          password: testEmptyUserData.password,
         )
       ).called(0);
 
@@ -148,12 +148,12 @@ void main() {
     });
 
     test('Register should not work with null user data', () async {
-      final bool actionSuccess = await authService.register(testNullValidUserData);
+      final bool actionSuccess = await authService.register(testNullUserData);
 
       verifyNever(
         firebaseAuthMock.createUserWithEmailAndPassword(
-          email: testNullValidUserData.email,
-          password: testNullValidUserData.password,
+          email: testNullUserData.email,
+          password: testNullUserData.password,
         )
       ).called(0);
 
@@ -161,12 +161,12 @@ void main() {
     });
 
     test('Register should not work with empty user data', () async {
-      final bool actionSuccess = await authService.register(testEmptyValidUserData);
+      final bool actionSuccess = await authService.register(testEmptyUserData);
 
       verifyNever(
         firebaseAuthMock.createUserWithEmailAndPassword(
-          email: testEmptyValidUserData.email,
-          password: testEmptyValidUserData.password,
+          email: testEmptyUserData.email,
+          password: testEmptyUserData.password,
         )
       ).called(0);
 
@@ -206,11 +206,11 @@ void main() {
     });
 
     test('Reset Password should not work with null user data', () async {
-      final bool actionSuccess = await authService.resetPassword(testNullValidUserData);
+      final bool actionSuccess = await authService.resetPassword(testNullUserData);
 
       verifyNever(
         firebaseAuthMock.sendPasswordResetEmail(
-          email: testNullValidUserData.email,
+          email: testNullUserData.email,
         )
       ).called(0);
 
@@ -218,11 +218,11 @@ void main() {
     });
 
     test('Reset Password should not work with empty user data', () async {
-      final bool actionSuccess = await authService.resetPassword(testEmptyValidUserData);
+      final bool actionSuccess = await authService.resetPassword(testEmptyUserData);
 
       verifyNever(
         firebaseAuthMock.sendPasswordResetEmail(
-          email: testEmptyValidUserData.email,
+          email: testEmptyUserData.email,
         )
       ).called(0);
 
