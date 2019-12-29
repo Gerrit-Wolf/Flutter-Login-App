@@ -5,7 +5,7 @@ import 'package:test_app/screens/resetPassword/index.dart';
 import 'shared/makeTestableWidget.dart';
 
 void main() {
-  testWidgets('Reset Password Screen has a Login Button', (WidgetTester tester) async {
+  testWidgets('Reset Password Screen has a Reset Button', (WidgetTester tester) async {
     await tester.pumpWidget(makeTestableWidget(child: ResetPasswordScreen()));
     await tester.pumpAndSettle();
 
