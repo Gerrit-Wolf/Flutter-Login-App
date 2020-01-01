@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_app/models/LoginUserData.dart';
 import 'package:test_app/services/AuthService.dart';
+import '../mocks/AuthResultMock.dart';
 import '../mocks/FirebaseAuthMock.dart';
-import '../mocks/FirebaseUserMock.dart';
 
 void main() {
   final LoginUserData testValidUserData = LoginUserData(
@@ -26,22 +26,13 @@ void main() {
     password: 'test-non-valid-password',
   );
 
-  final FirebaseUserMock firebaseUserMock = FirebaseUserMock();
+  final AuthResultMock firebaseAuthResultMock = AuthResultMock();
   final FirebaseAuthMock firebaseAuthMock = FirebaseAuthMock();
   final AuthService authService = AuthService(firebaseAuth: firebaseAuthMock);
 
   group('Login', () {
     test('Login should work with valid user data', () async {
-      when(
-        firebaseAuthMock.signInWithEmailAndPassword(
-          email: testValidUserData.email,
-          password: testValidUserData.password,
-        )
-      ).thenAnswer(
-        (_) => Future<FirebaseUserMock>.value(firebaseUserMock)
-      );
-
-      final bool actionSuccess = await authService.login(testValidUserData);
+      await authService.login(testValidUserData);
 
       verify(
         firebaseAuthMock.signInWithEmailAndPassword(
@@ -49,8 +40,6 @@ void main() {
           password: testValidUserData.password,
         )
       ).called(1);
-
-      expect(actionSuccess, true);
     });
 
     test('Login should not work with invalid user data', () async {
@@ -60,7 +49,7 @@ void main() {
           password: testNonValidUserData.password,
         )
       ).thenAnswer(
-        (_) => Future<FirebaseUserMock>.value(null)
+        (_) => Future<AuthResultMock>.value(firebaseAuthResultMock)
       );
 
       final bool actionSuccess = await authService.login(testNonValidUserData);
@@ -104,16 +93,7 @@ void main() {
 
   group('Register', () {
     test('Register should work with valid user data', () async {
-      when(
-        firebaseAuthMock.createUserWithEmailAndPassword(
-          email: testValidUserData.email,
-          password: testValidUserData.password,
-        )
-      ).thenAnswer(
-        (_) => Future<FirebaseUserMock>.value(firebaseUserMock)
-      );
-
-      final bool actionSuccess = await authService.register(testValidUserData);
+      await authService.register(testValidUserData);
 
       verify(
         firebaseAuthMock.createUserWithEmailAndPassword(
@@ -121,8 +101,6 @@ void main() {
           password: testValidUserData.password,
         )
       ).called(1);
-
-      expect(actionSuccess, true);
     });
 
     test('Register should not work with invalid user data', () async {
@@ -132,7 +110,7 @@ void main() {
           password: testNonValidUserData.password,
         )
       ).thenAnswer(
-        (_) => Future<FirebaseUserMock>.value(null)
+        (_) => Future<AuthResultMock>.value(firebaseAuthResultMock)
       );
 
       final bool actionSuccess = await authService.register(testNonValidUserData);

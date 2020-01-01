@@ -9,7 +9,8 @@ class AuthService {
   Future<bool> login(LoginUserData userData) async {
     try {
       _checkUserDataValidity(userData);
-      return await firebaseAuth.signInWithEmailAndPassword(email: userData.email, password: userData.password) != null;
+      final AuthResult authResult= await firebaseAuth.signInWithEmailAndPassword(email: userData.email, password: userData.password);
+      return authResult.user != null;
     } catch (exception) {
       return false;
     }
@@ -18,7 +19,8 @@ class AuthService {
   Future<bool> register(LoginUserData userData) async {
     try {
       _checkUserDataValidity(userData);
-      return await firebaseAuth.createUserWithEmailAndPassword(email: userData.email, password: userData.password) != null;
+      final AuthResult authResult = await firebaseAuth.createUserWithEmailAndPassword(email: userData.email, password: userData.password);
+      return authResult.user != null;
     } catch (exception) {
       return false;
     }

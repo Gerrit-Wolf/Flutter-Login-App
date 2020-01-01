@@ -10,9 +10,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
-          image: const AssetImage(FileLocations.BACKGROUND_SKY),
+          image: AssetImage(FileLocations.BACKGROUND_SKY),
           fit: BoxFit.cover,
         )
       ),

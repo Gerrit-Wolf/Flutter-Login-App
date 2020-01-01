@@ -35,9 +35,9 @@ class InputFieldState extends State<InputField> {
 
     return TextField(
       decoration: InputDecoration(
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: const Color(CustomColors.LIGHT_BLUE),
+            color: Color(CustomColors.LIGHT_BLUE),
           )
         ),
         suffixIcon: Icon(
