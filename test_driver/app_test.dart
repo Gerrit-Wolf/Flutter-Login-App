@@ -11,6 +11,8 @@ void main() {
     final SerializableFinder passwordFieldFinder = find.text('PASSWORD');
     final SerializableFinder authErrorFinder = find.text('AUTH_ERROR');
     final SerializableFinder forgotPasswordButtonFinder = find.text('FORGOT_PASSWORD');
+    final SerializableFinder backToHomeButtonFinder = find.text('BACK_TO_HOME');
+
     final LoginUserData userData = LoginUserData(
       email: 'machiavelli@outlook.de',
       password: '123456'
@@ -112,6 +114,7 @@ void main() {
       await driver.tap(passwordFieldFinder);
       await driver.enterText(userData.password);
       await driver.tap(loginButtonFinder);
+      await driver.tap(backToHomeButtonFinder);
 
       expect(await driver.getText(registerButtonFinder), 'REGISTER');
       expect(await driver.getText(loginButtonFinder), 'LOGIN');

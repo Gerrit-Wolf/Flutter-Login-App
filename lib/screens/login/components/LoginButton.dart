@@ -28,7 +28,7 @@ class LoginButton extends StatelessWidget {
         loginDataBloc.hideLoadingSpinner();
 
         if (actionSuccess == true) {
-          Navigator.pushNamed(context, Routes.HOME);
+          Navigator.pushNamed(context, Routes.MAIN);
           return;
         }
 

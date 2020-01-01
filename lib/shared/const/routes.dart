@@ -3,4 +3,5 @@ class Routes {
   static const String REGISTER = '/register';
   static const String RESET_PASSWORD = '/resetPassword';
   static const String HOME = '/';
+  static const String MAIN = '/main';
 }

@@ -15,5 +15,7 @@
   "RESET_PASSWORD_TITLE": "Please enter your E-Mail adress to get a new password",
   "EMPTY_EMAIL": "E-Mail field is empty",
   "EMPTY_PASSWORD": "Password field is empty",
-  "MALFORMED_EMAIL": "E-Mail is malformed"
+  "MALFORMED_EMAIL": "E-Mail is malformed",
+  "SUCCESSFUL_LOGIN": "Login was successful!",
+  "BACK_TO_HOME": "Back to homescreen"
 }

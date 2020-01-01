@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_app/screens/home/index.dart';
+import 'package:test_app/screens/main/index.dart';
 import 'package:test_app/screens/register/index.dart';
 import 'package:test_app/screens/resetPassword/index.dart';
 import 'package:test_app/services/AppLocalizations.dart';
@@ -33,6 +34,7 @@ void main() {
       Routes.LOGIN: (BuildContext context) => LoginScreen(),
       Routes.REGISTER: (BuildContext context) => RegisterScreen(),
       Routes.RESET_PASSWORD: (BuildContext context) => ResetPasswordScreen(),
+      Routes.MAIN: (BuildContext context) => MainScreen(),
     },
   ));
 }
