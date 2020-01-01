@@ -22,7 +22,6 @@ class LoginScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(
                 top: 100.0,
-                bottom: 50.0,
               ),
               height: 250.0,
               child: Image.asset(FileLocations.LOGO),
@@ -31,6 +30,7 @@ class LoginScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(CustomColors.GREY).withAlpha(30),
               ),
+              margin: const EdgeInsets.only(top: 50.0),
               child: Container(
                 padding: const EdgeInsets.all(20.0),
                 child: BlocProvider<LoginDataBloc>(
