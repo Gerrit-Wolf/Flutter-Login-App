@@ -12,5 +12,8 @@
   "EMAIL_HINT": "Bitte geben Sie hier Ihre Email Adresse ein ...",
   "PASSWORD_HINT": "Bitte geben Sie hier Ihr Passwort ein ...",
   "REGISTER_TITLE": "Bitte registrieren Sie sich um Ihre Entdeckungen zu bestätigen & sehen",
-  "RESET_PASSWORD_TITLE": "Bitte geben Sie Ihre E-Mail Adresse ein um ein neues Passwort zu erhalten"
+  "RESET_PASSWORD_TITLE": "Bitte geben Sie Ihre E-Mail Adresse ein um ein neues Passwort zu erhalten",
+  "EMPTY_EMAIL": "E-Mail Feld ist leer",
+  "EMPTY_PASSWORD": "Password Feld ist leer",
+  "MALFORMED_EMAIL": "Falsches E-Mail Format"
 }

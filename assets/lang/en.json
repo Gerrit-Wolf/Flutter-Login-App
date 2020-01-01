@@ -12,5 +12,8 @@
   "EMAIL_HINT": "Please enter your email adress here ...",
   "PASSWORD_HINT": "Please enter your password here ...",
   "REGISTER_TITLE": "Please register to confirm & view your explorations",
-  "RESET_PASSWORD_TITLE": "Please enter your E-Mail adress to get a new password"
+  "RESET_PASSWORD_TITLE": "Please enter your E-Mail adress to get a new password",
+  "EMPTY_EMAIL": "E-Mail field is empty",
+  "EMPTY_PASSWORD": "Password field is empty",
+  "MALFORMED_EMAIL": "E-Mail is malformed"
 }
