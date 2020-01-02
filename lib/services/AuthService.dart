@@ -36,6 +36,14 @@ class AuthService {
     }
   }
 
+  Future<FirebaseUser> getCurrentUser() async {
+    return await firebaseAuth.currentUser();
+  }
+
+  Future<void> signOut() async {
+    await firebaseAuth.signOut();
+  }
+
   void _checkUserDataValidity(LoginUserData userData) {
     if (_isUserDataValid(userData) == false) {
       throw Exception;
