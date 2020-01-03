@@ -28,7 +28,13 @@ class RegisterScreen extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                color: const Color(CustomColors.GREY).withAlpha(30),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: const Color(CustomColors.BABY_BLUE).withOpacity(0.1),
+                    blurRadius: 20.0,
+                    spreadRadius: 5.0,
+                  )
+                ]
               ),
               margin: const EdgeInsets.only(top: 50.0),
               child: Container(

@@ -60,7 +60,7 @@ class RegisterContentState extends State<RegisterContent> {
             width: double.infinity,
             child: PrimaryButton(
               buttonText: AppLocalizations.of(context).translate('REGISTER'),
-              color: const Color(CustomColors.WHITE),
+              color: const Color(CustomColors.BABY_BLUE),
               onPressed: () async {
                 final AuthService authService = AuthService(firebaseAuth: FirebaseAuth.instance);
                 loginDataBloc.showLoadingSpinner();
