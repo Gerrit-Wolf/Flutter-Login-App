@@ -1,6 +1,6 @@
 # Flutter LoginScreen example
 
-This app shows you an example of how to implement Login/Registration system based on Firebase.
+This app shows you an example of how to implement Login/Registration system based on Google Firebase.
 
 This code furthermore does include following features:
   - AppLocalization: German and English are currently supported
