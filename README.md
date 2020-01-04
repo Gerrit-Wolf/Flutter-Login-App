@@ -7,6 +7,13 @@ This code furthermore does include following features:
   - Bloc Design Pattern: For a few components the Bloc pattern has been used to show error messages, show or hide loading spinners, etc.
   - In order to maintain the functionality of this source code, tests have been written to improve stability and maintainability (Unit, Widget, Integration)
   - Clean Code
+  
+### Images
+
+<img src="https://i.ibb.co/TWDYmbt/Screenshot-20200104-152458.jpg" alt="Home Screen" width="200" height="400">
+<img src="https://i.ibb.co/PYvN7KZ/Screenshot-20200104-152516.jpg" alt="Login Screen" width="200" height="400">
+<img src="https://i.ibb.co/L8j9CwY/Screenshot-20200104-152522.jpg" alt="Reset Password Screen" width="200" height="400">
+<img src="https://i.ibb.co/NKdCxxF/Screenshot-20200104-152531.jpg" alt="Register Screen" width="200" height="400">
 
 ### Plugins
 
