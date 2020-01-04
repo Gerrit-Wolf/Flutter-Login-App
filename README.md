@@ -12,7 +12,7 @@ This code furthermore does include following features:
 
 | Homescreen | Login Screen | Reset  Screen | Register Screen |
 | :--------------: |  :------------: | :-----------------------: | :-----------------: |
-| <img src="https://i.ibb.co/DpK2g8H/Screenshot-20200104-184857.jpg" alt="Home Screen" width="100" /> | <img src="https://i.ibb.co/5v0WZ00/Screenshot-20200104-184901.jpg" alt="Login Screen" width="100" /> |<img  src="https://i.ibb.co/b3YdVDK/Screenshot-20200104-184904.jpg" alt="Reset Password Screen" width="100" />|<img src="https://i.ibb.co/d4shZXh/Screenshot-20200104-184909.jpg" alt="Register Screen"width="100" />
+| <img src="https://i.ibb.co/DpK2g8H/Screenshot-20200104-184857.jpg" alt="Home Screen" width="100" /> | <img src="https://i.ibb.co/5v0WZ00/Screenshot-20200104-184901.jpg" alt="Login Screen" width="100" /> |<img  src="https://i.ibb.co/b3YdVDK/Screenshot-20200104-184904.jpg" alt="Reset Password Screen" width="100" />|<img src="https://i.ibb.co/d4shZXh/Screenshot-20200104-184909.jpg" alt="Register Screen" width="100" /> |
 
 ### Plugins
 
