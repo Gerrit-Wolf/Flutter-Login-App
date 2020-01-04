@@ -10,10 +10,10 @@ This code furthermore does include following features:
   
 ### Images
 
-<img src="https://i.ibb.co/TWDYmbt/Screenshot-20200104-152458.jpg" alt="Home Screen" width="200" height="400">
-<img src="https://i.ibb.co/PYvN7KZ/Screenshot-20200104-152516.jpg" alt="Login Screen" width="200" height="400">
-<img src="https://i.ibb.co/L8j9CwY/Screenshot-20200104-152522.jpg" alt="Reset Password Screen" width="200" height="400">
-<img src="https://i.ibb.co/NKdCxxF/Screenshot-20200104-152531.jpg" alt="Register Screen" width="200" height="400">
+<img src="https://i.ibb.co/DpK2g8H/Screenshot-20200104-184857.jpg" alt="Home Screen" width="200" height="400">
+<img src="https://i.ibb.co/5v0WZ00/Screenshot-20200104-184901.jpg" alt="Login Screen" width="200" height="400">
+<img src="https://i.ibb.co/b3YdVDK/Screenshot-20200104-184904.jpg" alt="Reset Password Screen" width="200" height="400">
+<img src="https://i.ibb.co/d4shZXh/Screenshot-20200104-184909.jpg" alt="Register Screen" width="200" height="400">
 
 ### Plugins
 
